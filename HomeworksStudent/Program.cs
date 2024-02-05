@@ -1,18 +1,11 @@
-﻿using System.Runtime.CompilerServices;
-using System.Numerics;
-
-namespace HomeworksStudent {
+﻿namespace HomeworksStudent {
     internal class Program {
         private static void Main() {
-            //var intsArray = new int[10];
-            //FillArray(intsArray, 0, 100);
-            //BubleSort(intsArray);
-            //PrintArray(intsArray);
-            //var newArray = Add(intsArray, 1000);
-            //Console.WriteLine("\n");
-            //PrintArray(newArray);
-            //var result = GetSum(intsArray);
-            //Console.WriteLine("result = " + result);
+            Student student1 = new Student();
+            Student student2 = new Student(student1);
+            student1.SetName("Алёша");
+            student1.PrintStudentName();
+            student2.PrintStudentName();
         }
 
         private static T[] Add<T>(T[] array, T newValue) {
@@ -44,6 +37,7 @@ namespace HomeworksStudent {
             //}
             #endregion
         }
+
         private static void Swap<T>(T[] values, int firstIndex, int secondIndex) {
             #region Cortage
             //(values[firstIndex], values[secondIndex]) = (values[secondIndex], values[firstIndex]);
@@ -101,5 +95,40 @@ namespace HomeworksStudent {
         private static int GetAVG(int[] intsArray) {
             return GetSum(intsArray) / intsArray.Length;
         }
+    }
+}
+public class Student {
+    private string _secondName;
+    private string _firstName;
+    private string _group;
+    private Guid _guid;
+    private int _age;
+
+    public Student() {
+
+    }
+
+    public Student(Student student) {
+        _secondName = student._secondName;
+        _firstName = student._firstName;
+        _guid = student._guid;
+        _group = student._group;
+        _age = student._age;
+    }
+
+    public Student(string firstName, string secondName, string group, int age) {
+        _secondName = secondName;
+        _firstName = firstName;
+        _guid = Guid.NewGuid();
+        _group = group;
+        _age = age;
+    }
+
+    public void PrintStudentName() {
+        Console.WriteLine($"Имя {_firstName} Фамилия {_secondName}");
+    }
+
+    public void SetName(string newName) {
+        _secondName = newName;
     }
 }
