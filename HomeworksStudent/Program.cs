@@ -1,11 +1,9 @@
-﻿namespace HomeworksStudent {
+﻿using System.Drawing;
+
+namespace HomeworksStudent {
     internal class Program {
         private static void Main() {
-            Student student1 = new Student();
-            Student student2 = new Student(student1);
-            student1.SetName("Алёша");
-            student1.PrintStudentName();
-            student2.PrintStudentName();
+            Keyboard.Color = Color.White;
         }
 
         private static T[] Add<T>(T[] array, T newValue) {
@@ -130,5 +128,61 @@ public class Student {
 
     public void SetName(string newName) {
         _secondName = newName;
+    }
+}
+
+public class Car {
+    private int _hourcePower;
+    private string _model;
+    private int _maxSpeed;
+    private static Color _color;
+
+    public Car(string model, int maxSpeed) {
+        _model = model;
+        _maxSpeed = maxSpeed;
+    }
+
+    public Car(string model, int maxSpeed, int hourcePower, Color color) : this(model, maxSpeed) {
+        _hourcePower = hourcePower;
+        _color = color;
+    }
+}
+
+public class Character {
+    private int _health;
+
+    public int Health {
+        get { return _health; }
+        set {
+            _health -= value;
+
+            if (_health <= 0) {
+                Die();
+            }
+        }
+    }
+
+    private void Die() {
+        Console.WriteLine("Я умер");
+    }
+}
+
+public class Keyboard {
+    public static Color Color;
+
+    static Keyboard() {
+        Console.WriteLine("Статический конструктор.");
+    }
+
+    public Keyboard() {
+        Console.WriteLine("Обычный конструктор.");
+    }
+
+    public static void PrintColorInfo() {
+        Console.WriteLine("Это статический метод по выводу информации");
+    }
+
+    public void NoStaticMethod() {
+        PrintColorInfo();
     }
 }
