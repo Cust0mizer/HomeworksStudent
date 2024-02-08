@@ -1,9 +1,18 @@
 ﻿using System.Drawing;
+using System;
 
 namespace HomeworksStudent {
-    internal class Program {
+    internal sealed class Program {
         private static void Main() {
-            Keyboard.Color = Color.White;
+            int[] goodCombination = { 1, 2, 3, 4, 5 };
+            CombinationLock combinationLock = new CombinationLock(goodCombination);
+            combinationLock.SetNewCombination();
+
+            while (!combinationLock.IsOpen || Console.ReadKey().Key == ConsoleKey.Enter) {
+                Console.WriteLine("Введите число");
+                int.TryParse(Console.ReadLine(), out int value);
+                combinationLock.TryOpenLock(value);
+            }
         }
 
         private static T[] Add<T>(T[] array, T newValue) {
@@ -95,94 +104,69 @@ namespace HomeworksStudent {
         }
     }
 }
-public class Student {
-    private string _secondName;
-    private string _firstName;
-    private string _group;
-    private Guid _guid;
-    private int _age;
 
-    public Student() {
+public class CombinationLock {
+    public bool IsOpen { get; private set; }
 
+    private int[] _goodCombination;
+    private int _currentLockIndex;
+
+    public CombinationLock(int[] goolCombination) {
+        _goodCombination = goolCombination;
     }
 
-    public Student(Student student) {
-        _secondName = student._secondName;
-        _firstName = student._firstName;
-        _guid = student._guid;
-        _group = student._group;
-        _age = student._age;
-    }
+    public void TryOpenLock(int combinationVariant) {
+        if (IsOpen) {
+            return;
+        }
 
-    public Student(string firstName, string secondName, string group, int age) {
-        _secondName = secondName;
-        _firstName = firstName;
-        _guid = Guid.NewGuid();
-        _group = group;
-        _age = age;
-    }
-
-    public void PrintStudentName() {
-        Console.WriteLine($"Имя {_firstName} Фамилия {_secondName}");
-    }
-
-    public void SetName(string newName) {
-        _secondName = newName;
-    }
-}
-
-public class Car {
-    private int _hourcePower;
-    private string _model;
-    private int _maxSpeed;
-    private static Color _color;
-
-    public Car(string model, int maxSpeed) {
-        _model = model;
-        _maxSpeed = maxSpeed;
-    }
-
-    public Car(string model, int maxSpeed, int hourcePower, Color color) : this(model, maxSpeed) {
-        _hourcePower = hourcePower;
-        _color = color;
-    }
-}
-
-public class Character {
-    private int _health;
-
-    public int Health {
-        get { return _health; }
-        set {
-            _health -= value;
-
-            if (_health <= 0) {
-                Die();
+        if (_goodCombination[_currentLockIndex] == combinationVariant) {
+            _currentLockIndex++;
+            if (_currentLockIndex == _goodCombination.Length) {
+                Console.WriteLine($"Ступень {_currentLockIndex} пройдена");
+                SetLockState(LockState.Open);
             }
+            else {
+                Console.WriteLine($"Ступень {_currentLockIndex} пройдена");
+            }
+        }
+        else {
+            Console.WriteLine($"Неверная комбинация");
+            _currentLockIndex = 0;
         }
     }
 
-    private void Die() {
-        Console.WriteLine("Я умер");
+    public void SetNewCombination() {
+        while (!IsOpen) {
+            Console.WriteLine("Введите число");
+            int.TryParse(Console.ReadLine(), out int value);
+            TryOpenLock(value);
+        }
+
+        for (int i = 0; i < _goodCombination.Length; i++) {
+            Console.WriteLine($"Введите число для ступени {i + 1}");
+            int.TryParse(Console.ReadLine(), out int value);
+            _goodCombination[i] = value;
+        }
+        SetLockState(LockState.Lock);
+    }
+
+    private void SetLockState(LockState lockState) {
+        switch (lockState) {
+            case LockState.Lock:
+                IsOpen = false;
+                Console.WriteLine("Замок закрыт");
+                break;
+            case LockState.Open:
+                IsOpen = true;
+                _currentLockIndex = 0;
+                Console.WriteLine("Замок Открыт");
+                break;
+        }
     }
 }
 
-public class Keyboard {
-    public static Color Color;
-
-    static Keyboard() {
-        Console.WriteLine("Статический конструктор.");
-    }
-
-    public Keyboard() {
-        Console.WriteLine("Обычный конструктор.");
-    }
-
-    public static void PrintColorInfo() {
-        Console.WriteLine("Это статический метод по выводу информации");
-    }
-
-    public void NoStaticMethod() {
-        PrintColorInfo();
-    }
+public enum LockState {
+    Lock,
+    Open
 }
