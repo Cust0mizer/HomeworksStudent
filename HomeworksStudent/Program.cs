@@ -4,15 +4,17 @@ using System;
 namespace HomeworksStudent {
     internal sealed class Program {
         private static void Main() {
-            int[] goodCombination = { 1, 2, 3, 4, 5 };
+            int[] goodCombination = { -160, 224, 3445, 441, 510 };
             CombinationLock combinationLock = new CombinationLock(goodCombination);
-            combinationLock.SetNewCombination();
+            //combinationLock.SetNewCombination();
 
-            while (!combinationLock.IsOpen || Console.ReadKey().Key == ConsoleKey.Enter) {
-                Console.WriteLine("Введите число");
-                int.TryParse(Console.ReadLine(), out int value);
-                combinationLock.TryOpenLock(value);
-            }
+            //while (!combinationLock.IsOpen || Console.ReadKey().Key == ConsoleKey.Enter) {
+            //    Console.WriteLine("Введите число");
+            //    int.TryParse(Console.ReadLine(), out int value);
+            //    combinationLock.TryOpenLock(value);
+            //}
+
+            Brutforce.GetPassword(combinationLock, -10000, 10000);
         }
 
         private static T[] Add<T>(T[] array, T newValue) {
@@ -115,9 +117,11 @@ public class CombinationLock {
         _goodCombination = goolCombination;
     }
 
-    public void TryOpenLock(int combinationVariant) {
+    public bool TryOpenLock(int combinationVariant) {
+        bool result = false;
+
         if (IsOpen) {
-            return;
+            return result;
         }
 
         if (_goodCombination[_currentLockIndex] == combinationVariant) {
@@ -125,8 +129,10 @@ public class CombinationLock {
             if (_currentLockIndex == _goodCombination.Length) {
                 Console.WriteLine($"Ступень {_currentLockIndex} пройдена");
                 SetLockState(LockState.Open);
+                result = true;
             }
             else {
+                result = true;
                 Console.WriteLine($"Ступень {_currentLockIndex} пройдена");
             }
         }
@@ -134,6 +140,7 @@ public class CombinationLock {
             Console.WriteLine($"Неверная комбинация");
             _currentLockIndex = 0;
         }
+        return result;
     }
 
     public void SetNewCombination() {
@@ -162,6 +169,40 @@ public class CombinationLock {
                 _currentLockIndex = 0;
                 Console.WriteLine("Замок Открыт");
                 break;
+        }
+    }
+}
+
+public class Brutforce {
+    public static void GetPassword(CombinationLock combinationLock, int startIndex, int maxIndex) {
+        List<int> endPasswords = new List<int>();
+        List<bool> bools = new List<bool>();
+        int index = startIndex;
+        int maxTry = maxIndex;
+        int goodIndex = 0;
+
+        while (index < maxTry) {
+            if (bools.Count > goodIndex && bools[goodIndex]) {
+                combinationLock.TryOpenLock(endPasswords[goodIndex]);
+                goodIndex++;
+            }
+            else {
+                if (combinationLock.TryOpenLock(index)) {
+                    endPasswords.Add(index);
+                    bools.Add(true);
+                    index = 0;
+                }
+                else {
+                    goodIndex = 0;
+                    index++;
+                }
+            }
+
+        }
+
+        Console.WriteLine("Password");
+        foreach (var item in endPasswords) {
+            Console.Write(item + " ");
         }
     }
 }
