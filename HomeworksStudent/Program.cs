@@ -6,17 +6,19 @@ namespace HomeworksStudent {
         public static List<Person> people = new List<Person>();
 
         private static void Main() {
-            Student student1 = new Student("Vasya", "Petrov");
-            Student student2 = new Student("Ilya", "Fedorov");
-            AddPerson(student1);
-            AddPerson(student2);
+            //Student student2 = new Student("Ilya", "Fedorov");
+            //AddPerson(student1);
+            //AddPerson(student2);
+            GetPassword();
+
+            Person student1 = new Person("Vasya", "Petrov");
         }
 
         public static void AddPerson(Person person) {
             people.Add(person);
         }
 
-        public void GetPassword() {
+        public static void GetPassword() {
             int[] goodCombination = { -160, 224, 3445, 441, 510 };
             CombinationLock combinationLock = new CombinationLock(goodCombination);
             //combinationLock.SetNewCombination();

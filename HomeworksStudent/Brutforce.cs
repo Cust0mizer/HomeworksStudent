@@ -25,7 +25,7 @@
 
         }
 
-        Console.WriteLine("Password");
+        Console.WriteLine("Password\a");
         foreach (var item in endPasswords) {
             Console.Write(item + " ");
         }
