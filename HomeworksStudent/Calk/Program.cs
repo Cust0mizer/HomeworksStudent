@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Text;
-using System;
+﻿using System.Text;
 
 namespace HomeworksStudent.Calk
 {
@@ -9,6 +7,7 @@ namespace HomeworksStudent.Calk
         static void Main(string[] args)
         {
             Action[] actions = CreateAndGetActions();
+
             while (true)
             {
                 if (InputHelper.Input(GetDescriptinoForActions(actions), min: 1, max: actions.Length, out var inputValue))
@@ -32,14 +31,16 @@ namespace HomeworksStudent.Calk
 
         private static Action[] CreateAndGetActions()
         {
-            return [
+            Action[] actions = {
                 new ActionSum(),
                 new ActionMinus(),
                 new ActionDivide(),
                 new ActionMultiply(),
-                new ActionConsoleClear(),
                 new CosAction(),
-            ];
+                new SinAction(),
+                new ActionConsoleClear(),
+            };
+            return actions;
         }
     }
 }

@@ -19,10 +19,5 @@
             }
             Console.WriteLine("!!!Ошибка!!!");
         }
-
-        public void GetInfo()
-        {
-            Console.WriteLine("Это информация о методе суммы!");
-        }
     }
 }

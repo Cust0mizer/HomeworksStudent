@@ -24,15 +24,13 @@
 
     public static bool Input(string text, int min, int max, out int inputValue)
     {
-        inputValue = -1;
         bool result = false;
         Console.WriteLine(text);
 
-        if (int.TryParse(Console.ReadLine(), out int inputResult))
+        if (int.TryParse(Console.ReadLine(), out inputValue))
         {
-            if (inputResult >= min && inputResult <= max)
+            if (inputValue >= min && inputValue <= max)
             {
-                inputValue = inputResult;
                 result = true;
             }
         }
