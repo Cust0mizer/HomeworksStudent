@@ -26,7 +26,7 @@
     {
         bool result = false;
         Console.WriteLine(text);
-
+        //1>=       <=7
         if (int.TryParse(Console.ReadLine(), out inputValue))
         {
             if (inputValue >= min && inputValue <= max)

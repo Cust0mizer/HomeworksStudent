@@ -19,5 +19,10 @@
             }
             Console.WriteLine("!!!Ошибка!!!");
         }
+
+        public void Method()
+        {
+
+        }
     }
 }
