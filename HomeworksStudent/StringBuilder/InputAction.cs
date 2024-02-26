@@ -17,7 +17,11 @@ namespace HomeworksStudent.PersonAbstract.StringBuilders
                 InputHelper.PrintError("Вы ввели пустой текст!");
                 return;
             }
+            ChangeApend(appendText);
+        }
 
+        private void ChangeApend(string appendText)
+        {
             IList list = Enum.GetValues(typeof(LineMode));
 
             while (true)

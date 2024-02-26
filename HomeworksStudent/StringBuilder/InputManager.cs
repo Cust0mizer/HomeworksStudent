@@ -17,22 +17,32 @@ namespace HomeworksStudent.PersonAbstract.StringBuilders
             switch (lineMode)
             {
                 case LineMode.Line:
-                    stringBuilder.Append(text);
-                    break;
+                stringBuilder.Append(text);
+                break;
                 case LineMode.NewLine:
-                    stringBuilder.Append($"\n{text}");
-                    break;
+                stringBuilder.Append($"\n{text}");
+                break;
             }
         }
 
-        public void Print()
+        public void ReplaceText(string firstText, string secondText)
         {
-            Console.WriteLine(stringBuilder);
+            stringBuilder.Replace(firstText, secondText);
+        }
+
+        public void PrintAll()
+        {
+            InputHelper.PrintGoodMessage(stringBuilder.ToString());
         }
 
         public void Clear()
         {
             stringBuilder.Clear();
+        }
+
+        public bool ContainsInfo()
+        {
+            return stringBuilder.Length > 0;
         }
     }
 }

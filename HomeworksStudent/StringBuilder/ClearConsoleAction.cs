@@ -1,6 +1,6 @@
 ﻿namespace HomeworksStudent.PersonAbstract.StringBuilders
 {
-    public class ClearAction : IAction
+    public class ClearConsoleAction : IAction
     {
         public string Description => "Очистить экран";
 
