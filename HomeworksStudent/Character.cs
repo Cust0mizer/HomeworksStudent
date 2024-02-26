@@ -54,8 +54,3 @@ public struct DamageAction {
         Name = name;
     }
 }
-
-//coment
-//coment
-//coment
-//coment
