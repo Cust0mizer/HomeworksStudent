@@ -3,6 +3,7 @@
     public class ReplaceAction : IAction
     {
         private InputManager _inputManager = InputManager.Instance;
+        private ButtonYesOrNo _buttonYesOrNo = ButtonYesOrNo.Instance;
 
         public string Description => "Замена строк";
         private const string EMPTY_STRING_ERROR = "Строка не может быть пустой!";
@@ -18,7 +19,20 @@
             _inputManager.PrintAll();
             string firstText = GetString("Введите строку, которую хотите заменить");
             string secondText = GetString("Введите вторую строку");
-            _inputManager.ReplaceText(firstText, secondText);
+            InputHelper.PrintWarning("В строке:");
+            _inputManager.PrintAll();
+            InputHelper.PrintWarning($"Вы замените все {firstText} на {secondText}");
+
+            if (_buttonYesOrNo.GetResult("Подвтердить?\n1 - Да\nЛюбой другой символ - нет"))
+            {
+                _inputManager.ReplaceText(firstText, secondText);
+                InputHelper.PrintGoodMessage($"У вас получилось");
+                _inputManager.PrintAll();
+            }
+            else
+            {
+                Console.WriteLine("Вы отказались от операции!");
+            }
         }
 
         private string GetString(string description)
