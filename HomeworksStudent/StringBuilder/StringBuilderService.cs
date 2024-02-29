@@ -2,47 +2,59 @@
 
 namespace HomeworksStudent.PersonAbstract.StringBuilders
 {
-    public class InputManager
+    public class StringBuilderService
     {
-        private StringBuilder stringBuilder = new StringBuilder();
-        public readonly static InputManager Instance;
+        private StringBuilder _stringBuilder = new StringBuilder();
+        public readonly static StringBuilderService Instance;
 
-        static InputManager()
+        static StringBuilderService()
         {
-            Instance = new InputManager();
+            Instance = new StringBuilderService();
         }
+
+
+
+
+
+
+
+
+
+
+
+
 
         public void AddNewText(string text, LineMode lineMode)
         {
             switch (lineMode)
             {
                 case LineMode.Line:
-                stringBuilder.Append(text);
+                _stringBuilder.Append(text);
                 break;
                 case LineMode.NewLine:
-                stringBuilder.Append($"\n{text}");
+                _stringBuilder.Append($"\n{text}");
                 break;
             }
         }
 
         public void ReplaceText(string firstText, string secondText)
         {
-            stringBuilder.Replace(firstText, secondText);
+            _stringBuilder.Replace(firstText, secondText);
         }
 
         public void PrintAll()
         {
-            InputHelper.PrintGoodMessage(stringBuilder.ToString());
+            InputHelper.PrintGoodMessage(_stringBuilder.ToString());
         }
 
         public void Clear()
         {
-            stringBuilder.Clear();
+            _stringBuilder.Clear();
         }
 
         public bool ContainsInfo()
         {
-            return stringBuilder.Length > 0;
+            return _stringBuilder.Length > 0;
         }
     }
 }
