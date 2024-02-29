@@ -29,7 +29,7 @@ namespace HomeworksStudent.PersonAbstract.StringBuilders
             {
                 if (StringBuilderProgram.IS_CHANGE_APPEND_ENABLE)
                 {
-                    if (InputHelper.Input(GetLineModeDescription().ToString(), (int)list[0], (int)list[list.Count - 1], out int inputValue))
+                    if (InputHelper.Input(GetLineModeDescription(), (int)list[0], (int)list[list.Count - 1], out int inputValue))
                     {
                         _inputManager.AddNewText(appendText, (LineMode)inputValue);
                         break;
@@ -51,12 +51,11 @@ namespace HomeworksStudent.PersonAbstract.StringBuilders
         {
             IList list = Enum.GetValues(typeof(LineMode));
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine("Режим добавления\n");
+            stringBuilder.Append("Режим добавления\n");
 
             for (int i = 0; i < list.Count; i++)
             {
-                object? item = list[i];
-                stringBuilder.Append($"{i + 1} - {item}\n");
+                stringBuilder.Append($"{i + 1} - {list[i]}\n");
             }
             return stringBuilder;
         }
