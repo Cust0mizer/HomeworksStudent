@@ -16,9 +16,9 @@
 
             while (true)
             {
-                if (InputHelper.Input(ActionHelper.GetDescriptionForAction(actions), 1, actions.Length, out int inputValue))
+                if (InputHelper.Input(ActionHelper.GetDescriptionForAction(actions), 1, actions.Length, out int inputUserValue))
                 {
-                    actions[inputValue - 1].Run();
+                    actions[inputUserValue - 1].Run();
                 }
             }
         }
