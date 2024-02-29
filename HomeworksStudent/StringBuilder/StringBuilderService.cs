@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Security.Cryptography.X509Certificates;
+using System.Text;
 
 namespace HomeworksStudent.PersonAbstract.StringBuilders
 {
@@ -12,28 +13,19 @@ namespace HomeworksStudent.PersonAbstract.StringBuilders
             Instance = new StringBuilderService();
         }
 
-
-
-
-
-
-
-
-
-
-
-
+        private StringBuilderService()
+        { }
 
         public void AddNewText(string text, LineMode lineMode)
         {
             switch (lineMode)
             {
                 case LineMode.Line:
-                _stringBuilder.Append(text);
-                break;
+                    _stringBuilder.Append(text);
+                    break;
                 case LineMode.NewLine:
-                _stringBuilder.Append($"\n{text}");
-                break;
+                    _stringBuilder.Append($"\n{text}");
+                    break;
             }
         }
 
