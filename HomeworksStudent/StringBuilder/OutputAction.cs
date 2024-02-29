@@ -3,13 +3,13 @@
     public class OutputAction : IAction
     {
         public string Description => "Вывод текста";
-        InputManager _inputManager = InputManager.Instance;
+        StringBuilderService _inputManager = StringBuilderService.Instance;
 
         public void Run()
         {
             if (_inputManager.ContainsInfo())
             {
-                InputManager.Instance.PrintAll();
+                _inputManager.PrintAll();
             }
             else
             {

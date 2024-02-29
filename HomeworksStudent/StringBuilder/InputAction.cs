@@ -6,6 +6,7 @@ namespace HomeworksStudent.PersonAbstract.StringBuilders
     public class InputAction : IAction
     {
         public string Description => "Ввод текста";
+        private StringBuilderService _inputManager = StringBuilderService.Instance;
 
         public void Run()
         {
@@ -26,14 +27,22 @@ namespace HomeworksStudent.PersonAbstract.StringBuilders
 
             while (true)
             {
-                if (InputHelper.Input(GetLineModeDescription().ToString(), (int)list[0], (int)list[list.Count - 1], out int inputValue))
+                if (StringBuilderProgram.IS_CHANGE_APPEND_ENABLE)
                 {
-                    InputManager.Instance.AddNewText(appendText, (LineMode)inputValue);
-                    break;
+                    if (InputHelper.Input(GetLineModeDescription().ToString(), (int)list[0], (int)list[list.Count - 1], out int inputValue))
+                    {
+                        _inputManager.AddNewText(appendText, (LineMode)inputValue);
+                        break;
+                    }
+                    else
+                    {
+                        InputHelper.PrintError("Шото не то");
+                    }
                 }
                 else
                 {
-                    InputHelper.PrintError("Шото не то");
+                    _inputManager.AddNewText(appendText, LineMode.Line);
+                    break;
                 }
             }
         }
