@@ -1,4 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System;
 using System.Text;
 
 namespace HomeworksStudent.PersonAbstract.StringBuilders
