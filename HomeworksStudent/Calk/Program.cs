@@ -4,7 +4,7 @@ namespace HomeworksStudent.Calk
 {
     public class Program
     {
-        static void Mai(string[] args)
+        static void Main(string[] args)
         {
             Action[] actions = CreateAndGetActions();
 
@@ -37,6 +37,7 @@ namespace HomeworksStudent.Calk
                 new ActionMultiply(),
                 new CosAction(),
                 new SinAction(),
+                new ActionLogO(),
                 new ActionConsoleClear(),
             };
             return actions;
