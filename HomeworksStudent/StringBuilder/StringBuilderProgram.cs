@@ -5,7 +5,7 @@ namespace HomeworksStudent.PersonAbstract.StringBuilders
 {
     public partial class StringBuilderProgram
     {
-        public static void Main(string[] args)
+        public static void Main1(string[] args)
         {
             IAction[] actions = {
                 new InputAction(),
