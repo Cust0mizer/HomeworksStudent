@@ -23,7 +23,7 @@
 
             if (int.TryParse(Console.ReadLine(), out int inputValue))
             {
-                float result = MathF.Sin(inputValue);
+                float result = MathF.Sin(inputValue); 
                 Console.WriteLine($"Синус числа {inputValue} равен {result}");
             }
             else

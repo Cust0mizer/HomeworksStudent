@@ -2,7 +2,8 @@
 {
     public class ReplaceAction : IAction
     {
-        private InputManager _inputManager = InputManager.Instance;
+        private StringBuilderService _inputManager = StringBuilderService.Instance;
+        private ButtonYesOrNo _buttonYesOrNo = ButtonYesOrNo.Instance;
 
         public string Description => "Замена строк";
         private const string EMPTY_STRING_ERROR = "Строка не может быть пустой!";
@@ -16,12 +17,25 @@
                 return;
             }
             _inputManager.PrintAll();
-            string firstText = GetString("Введите строку, которую хотите заменить");
-            string secondText = GetString("Введите вторую строку");
-            _inputManager.ReplaceText(firstText, secondText);
+            string firstText = GetInputString("Введите строку, которую хотите заменить");
+            string secondText = GetInputString("Введите вторую строку");
+            InputHelper.PrintWarning("В строке:");
+            _inputManager.PrintAll();
+            InputHelper.PrintWarning($"Вы замените все {firstText} на {secondText}");
+
+            if (_buttonYesOrNo.GetResult("Подвтердить?\n1 - Да\nЛюбой другой символ - нет"))
+            {
+                _inputManager.ReplaceText(firstText, secondText);
+                InputHelper.PrintGoodMessage($"У вас получилось");
+                _inputManager.PrintAll();
+            }
+            else
+            {
+                InputHelper.PrintWarning("Вы отказались от операции!");
+            }
         }
 
-        private string GetString(string description)
+        private string GetInputString(string description)
         {
             Console.WriteLine(description);
             string resultText = Console.ReadLine();
