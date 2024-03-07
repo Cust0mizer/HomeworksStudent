@@ -1,6 +1,6 @@
 ﻿namespace HomeworksStudent.PersonAbstract.StringBuilders
 {
-    public class OutputAction : IAction
+    public class OutputAction : IAction, IDescription
     {
         public string Description => "Вывод текста";
         StringBuilderService _inputManager = StringBuilderService.Instance;

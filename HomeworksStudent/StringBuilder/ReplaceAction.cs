@@ -1,6 +1,6 @@
 ﻿namespace HomeworksStudent.PersonAbstract.StringBuilders
 {
-    public class ReplaceAction : IAction
+    public class ReplaceAction : IAction, IDescription
     {
         private StringBuilderService _inputManager = StringBuilderService.Instance;
         private ButtonYesOrNo _buttonYesOrNo = ButtonYesOrNo.Instance;

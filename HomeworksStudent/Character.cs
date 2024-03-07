@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-public class Character : IDamageble {
+﻿public class Character : IDamageble {
     private float _currentHealth;
     private float _maxHealth;
 

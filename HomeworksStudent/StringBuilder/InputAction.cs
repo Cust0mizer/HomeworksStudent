@@ -3,7 +3,7 @@ using System.Text;
 
 namespace HomeworksStudent.PersonAbstract.StringBuilders
 {
-    public class InputAction : IAction
+    public class InputAction : IAction, IDescription
     {
         public string Description => "Ввод текста";
         private StringBuilderService _inputManager = StringBuilderService.Instance;
@@ -27,7 +27,7 @@ namespace HomeworksStudent.PersonAbstract.StringBuilders
 
             while (true)
             {
-                if (StringBuilderProgram.IS_CHANGE_APPEND_ENABLE)
+                if (EntryStringBuilder.IS_CHANGE_APPEND_ENABLE)
                 {
                     if (InputHelper.Input(GetLineModeDescription(), (int)list[0], (int)list[list.Count - 1], out int inputValue))
                     {

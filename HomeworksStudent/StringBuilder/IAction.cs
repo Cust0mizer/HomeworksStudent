@@ -2,7 +2,6 @@
 {
     public interface IAction
     {
-        public string Description { get; }
         public void Run();
     }
 }

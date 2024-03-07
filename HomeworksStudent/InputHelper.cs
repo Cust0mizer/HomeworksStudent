@@ -5,27 +5,29 @@ public static class InputHelper
     public static void PrintColor(string text, ConsoleColor consoleColor)
     {
         Console.ForegroundColor = consoleColor;
-        Console.WriteLine(text);
-        Console.ResetColor();
+        PrintAndResetColor(text);
     }
 
     public static void PrintError(string text)
     {
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine(text);
-        Console.ResetColor();
+        PrintAndResetColor(text);
     }
 
     public static void PrintGoodMessage(string text)
     {
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine(text);
-        Console.ResetColor();
+        PrintAndResetColor(text);
     }
 
     public static void PrintWarning(string text)
     {
         Console.ForegroundColor = ConsoleColor.Yellow;
+        PrintAndResetColor(text);
+    }
+
+    private static void PrintAndResetColor(string text)
+    {
         Console.WriteLine(text);
         Console.ResetColor();
     }

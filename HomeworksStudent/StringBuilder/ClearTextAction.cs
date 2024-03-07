@@ -1,6 +1,6 @@
 ﻿namespace HomeworksStudent.PersonAbstract.StringBuilders
 {
-    public class ClearTextAction : IAction
+    public class ClearTextAction : IAction, IDescription
     {
         public string Description => "Очистить весь текст";
 

@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace HomeworksStudent.EnemyOverride
+﻿namespace HomeworksStudent.EnemyOverride
 {
     public class Enemy
     {
