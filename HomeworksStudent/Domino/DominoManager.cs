@@ -28,7 +28,7 @@
             _dominos[randomDominoIndex].PrintInfo();
             _useDomino.Add(_dominos[randomDominoIndex]);
             _dominos.Remove(_dominos[randomDominoIndex]);
-        }
+         }
 
         public void PrintAllDominoIndex()
         {

@@ -6,7 +6,11 @@ namespace HomeworksStudent.CollectionLessons
     {
         public void Start()
         {
-            List<IAction> list = new List<IAction>();
+            IAction[] list = {
+                new DictionaryAction(),
+                new HashSetAction()
+            };
+            list[1].Run();
         }
     }
 }

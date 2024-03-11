@@ -1,5 +1,4 @@
 ﻿using HomeworksStudent.PersonAbstract.StringBuilders;
-using System.Text;
 
 namespace HomeworksStudent.CollectionLessons
 {
