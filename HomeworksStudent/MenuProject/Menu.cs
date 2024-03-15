@@ -1,6 +1,4 @@
-﻿using HomeworksStudent.PersonAbstract.StringBuilders;
-
-namespace HomeworksStudent.MenuProject
+﻿namespace HomeworksStudent.MenuProject
 {
     public class Menu
     {
@@ -28,36 +26,36 @@ namespace HomeworksStudent.MenuProject
             }
         }
 
-        public void ShowMenu(bool isClear)
+        public void Start()
         {
-            if (isClear)
+            while (true)
             {
                 Console.Clear();
-            }
-
-            for (int i = 0; i < _menuItems.Length; i++)
-            {
-                SetMenuItem(_menuItems[i], i == _currentElementIndex);
+                for (int i = 0; i < _menuItems.Length; i++)
+                {
+                    SetMenuItem(_menuItems[i], i == _currentElementIndex);
+                }
+                Input(Console.ReadKey().Key);
             }
         }
 
-        public void Input(ConsoleKey consoleKey)
+        private void Input(ConsoleKey consoleKey)
         {
             switch (consoleKey)
             {
                 case ConsoleKey.DownArrow:
-                _currentElementIndex++;
-                break;
+                    _currentElementIndex++;
+                    break;
                 case ConsoleKey.UpArrow:
-                _currentElementIndex--;
-                break;
+                    _currentElementIndex--;
+                    break;
                 case ConsoleKey.Enter:
-                _actions[_currentElementIndex].Run();
-                return;
+                    _actions[_currentElementIndex].Run();
+                    return;
             }
 
             _currentElementIndex = Math.Clamp(_currentElementIndex, 0, _menuItems.Length - 1);
-            ShowMenu(true);
+            Start();
         }
 
         public void SetMenuItem(IMenuItem menuItem, bool isSelectedItem)

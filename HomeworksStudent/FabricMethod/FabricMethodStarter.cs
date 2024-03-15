@@ -1,4 +1,6 @@
-﻿namespace HomeworksStudent.FabricMethod
+﻿using HomeworksStudent.FabricMethod.FabricMethodPlayer;
+
+namespace HomeworksStudent.FabricMethod
 {
     class Program : IEntryPoint
     {
@@ -13,85 +15,18 @@
             unitB.Attack(player);
         }
     }
-
-    public class Base
-    {
-        private Creator _currentCreator;
-
-        public Base(Creator creator)
-        {
-            _currentCreator = creator;
-        }
-
-        public IUnit CreateNewUnit()
-        {
-            return _currentCreator.Create();
-        }
-    }
-
-    public interface IUnit
-    {
-        public int Damage { get; }
-        public int Healht { get; }
-
-        public void Attack(Player player);
-    }
-
-    public class Archer : IUnit
-    {
-        public int Damage => 20;
-
-        public int Healht => 10;
-
-        public void Attack(Player player)
-        {
-            player.TakeDamage(Damage);
-            Console.WriteLine("Стрелы пиу пиу!");
-        }
-    }
-
-    public class Barbarian : IUnit
-    {
-        public int Damage => 10;
-
-        public int Healht => 30;
-
-        public void Attack(Player player)
-        {
-            player.TakeDamage(Damage);
-            Console.WriteLine("Варвар атакует мечём!");
-        }
-    }
-
-    public abstract class Creator
-    {
-        public abstract IUnit Create();
-    }
-
-    public class ArcherCreator : Creator
-    {
-        public override IUnit Create()
-        {
-            return new Archer();
-        }
-    }
-
-    public class BarbarianCreator : Creator
-    {
-        public override IUnit Create()
-        {
-            return new Barbarian();
-        }
-    }
-
-    public class Player
-    {
-        private int _health = 100;
-
-        public void TakeDamage(int damageValue)
-        {
-            _health -= damageValue;
-            Console.WriteLine($"О нет, я получил урон! {damageValue} и теперь у меня {_health}");
-        }
-    }
 }
+
+//1с для магазина
+//Есть возможность добавить товар в магазин
+//У товара есть: 1 - Имя, 2 - Цена, 3 - Группа
+//Можно удалить товар из магазина:
+//(Показывают список всех товаров в магазине
+//Я выбираю из этого списка товар и он удаляется)
+//Можно получить все товары которые хранятся в магазине
+//Можно получить все товары, которые принадлежат определённой
+//группе
+//Группы товаров: 1 - фрукты, 2 - овощи, 3 - Выпечка
+//Дубляж кода - зло!
+
+

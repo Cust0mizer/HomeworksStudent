@@ -1,6 +1,4 @@
-﻿using HomeworksStudent.PersonAbstract.StringBuilders;
-
-namespace HomeworksStudent.CollectionLessons
+﻿namespace HomeworksStudent.CollectionLessons
 {
     public class CollectionStarter : IEntryPoint
     {

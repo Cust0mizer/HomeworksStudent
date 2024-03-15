@@ -1,6 +1,4 @@
-﻿using HomeworksStudent.PersonAbstract.StringBuilders;
-
-namespace HomeworksStudent.SmartHome
+﻿namespace HomeworksStudent.SmartHome
 {
     public class WaterStart : IAction
     {

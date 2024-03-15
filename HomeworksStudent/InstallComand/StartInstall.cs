@@ -2,19 +2,14 @@
 {
     public class StartInstall : IComand, IDescription
     {
+        private ButtonYesOrNo _serviceLocator = ServiceLocator.Instance.ButtonYesOrNo;
         public string Description => "Это преветственный экран";
 
         public bool Run(InstallScreen installScreen)
         {
             Console.WriteLine(Description);
-            bool result = false;
-
-            if (InputHelper.ChangeInput("Начать установку?\n1 - Да\n2 - Нет", 1, 2, out int value))
-            {
-                result = value == 1;
-                installScreen.SetIsShowIstallScren();
-            }
-
+            bool result = _serviceLocator.GetResult("Начать установку?\n1 - Да\n2 - Нет");
+            installScreen.SetIsShowIstallScren();
             return result;
         }
     }

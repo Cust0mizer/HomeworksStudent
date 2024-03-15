@@ -35,7 +35,11 @@ public static class InputHelper
     public static bool ChangeInput(string text, int min, int max, out int inputValue)
     {
         bool result = false;
-        Console.WriteLine(text);
+        if (!string.IsNullOrEmpty(text))
+        {
+            Console.WriteLine(text);
+        }
+
         if (int.TryParse(Console.ReadLine(), out inputValue))
         {
             if (inputValue >= min && inputValue <= max)
@@ -50,6 +54,7 @@ public static class InputHelper
     public static bool ChangeInput(StringBuilder stringBuilder, int min, int max, out int inputValue)
     {
         bool result = false;
+
         Console.WriteLine(stringBuilder);
 
         if (int.TryParse(Console.ReadLine(), out inputValue))

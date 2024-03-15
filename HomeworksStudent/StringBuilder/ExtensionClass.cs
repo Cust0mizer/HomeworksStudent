@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 
 public static class ExtensionClass
@@ -15,8 +16,15 @@ public static class ExtensionClass
 
         for (var i = 0; i < list.Count; i++)
         {
-            var item = list[i];
-            stringBuilder.AppendLine($"{i + 1} - {item}");
+            stringBuilder.AppendLine($"{i + 1} - {list[i]}");
+        }
+    }
+
+    public static void GetDescriptionForNames<T>(this StringBuilder stringBuilder, List<T> list) where T : IContainsName
+    {
+        for (var i = 0; i < list.Count; i++)
+        {
+            stringBuilder.AppendLine($"{i + 1} - {list[i].Name}");
         }
     }
 
@@ -27,6 +35,11 @@ public static class ExtensionClass
     //        keyValuePairs[key] += value;
     //    }
     //}
+}
+
+public interface IContainsName
+{
+    public string Name { get; }
 }
 
 
