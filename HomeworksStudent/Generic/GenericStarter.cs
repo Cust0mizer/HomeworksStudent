@@ -1,15 +1,28 @@
-﻿namespace HomeworksStudent.EventAction {
-    public class EventStarter : IEntryPoint
+﻿
+namespace HomeworksStudent.Generic {
+    public class GenericStarter : IEntryPoint
     {
         public void Start()
         {
-            View view = new View();
-            CoinObserver playerObserver = new CoinObserver(view);
-            CoinManager.Instance.AddCoin(1231);
-            CoinManager.Instance.RemoveCoin(1231);
+            List1<int> myCollection = new List1<int>();
+        }
+
+        public void Sum<T>(T firstNum)
+        {
+            Console.WriteLine(firstNum.GetType().Name);
+        }
+
+        public void Swap<T>(T firstElem, T secondElem)
+        {
+            T temp = firstElem;
+            firstElem = secondElem;
+            secondElem = temp;
+            Console.WriteLine(secondElem);
         }
     }
 }
+
+
 
 //Создать дженерик метод который принимает 2 любые переменные и меняет их местами после чего выводит на экарн
 

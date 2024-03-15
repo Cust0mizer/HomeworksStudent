@@ -1,15 +1,30 @@
-﻿namespace HomeworksStudent.EventAction {
-    public class EventStarter : IEntryPoint
+﻿
+namespace HomeworksStudent.Generic {
+    public class List1<T>
     {
-        public void Start()
+        private T[] values = new T[10];
+
+        public void Add(T item)
         {
-            View view = new View();
-            CoinObserver playerObserver = new CoinObserver(view);
-            CoinManager.Instance.AddCoin(1231);
-            CoinManager.Instance.RemoveCoin(1231);
+            T[] newValues = new T[values.Length + 1];
+            for (int i = 0; i < values.Length; i++)
+            {
+                newValues[i] = values[i];
+            }
+            newValues[newValues.Length - 1] = item;
+        }
+
+        public void Print()
+        {
+            foreach (var item in values)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }
+
+
 
 //Создать дженерик метод который принимает 2 любые переменные и меняет их местами после чего выводит на экарн
 
