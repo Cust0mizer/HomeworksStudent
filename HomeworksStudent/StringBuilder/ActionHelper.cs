@@ -17,7 +17,7 @@ namespace HomeworksStudent.PersonAbstract.StringBuilders
         }
 
         public static StringBuilder GetDescriptionForAction<T>(T[] gameTasks)
-         {
+        {
             IDescription[] actions = new IDescription[gameTasks.Length];
 
             for (var i = 0; i < gameTasks.Length; i++)

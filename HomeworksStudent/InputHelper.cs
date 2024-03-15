@@ -32,10 +32,14 @@ public static class InputHelper
         Console.ResetColor();
     }
 
-    public static bool Input(string text, int min, int max, out int inputValue)
+    public static bool ChangeInput(string text, int min, int max, out int inputValue)
     {
         bool result = false;
-        Console.WriteLine(text);
+        if (!string.IsNullOrEmpty(text))
+        {
+            Console.WriteLine(text);
+        }
+
         if (int.TryParse(Console.ReadLine(), out inputValue))
         {
             if (inputValue >= min && inputValue <= max)
@@ -47,9 +51,10 @@ public static class InputHelper
         return result;
     }
 
-    public static bool Input(StringBuilder stringBuilder, int min, int max, out int inputValue)
+    public static bool ChangeInput(StringBuilder stringBuilder, int min, int max, out int inputValue)
     {
         bool result = false;
+
         Console.WriteLine(stringBuilder);
 
         if (int.TryParse(Console.ReadLine(), out inputValue))
@@ -62,4 +67,32 @@ public static class InputHelper
 
         return result;
     }
+
+    public static bool TextInputField(string text, out string userInputText)
+    {
+        bool result = false;
+        Console.WriteLine(text);
+
+        userInputText = Console.ReadLine();
+
+        if (!string.IsNullOrEmpty(userInputText))
+        {
+            result = true;
+        }
+
+        return result;
+    }
+
+    //public static bool IntInputField<T>(string text, out T userInputText) where T : INumber<T>
+    //{
+    //    bool result = false;
+    //    Console.WriteLine(text);
+
+    //    if (T.TryParse(Console.ReadLine(), userInputText.ToString(), out userInputText))
+    //    {
+    //        result = true;
+    //    }
+
+    //    return result;
+    //}
 }

@@ -1,12 +1,14 @@
-﻿using HomeworksStudent.PersonAbstract.StringBuilders;
-
-namespace HomeworksStudent.CollectionLessons
+﻿namespace HomeworksStudent.CollectionLessons
 {
     public class CollectionStarter : IEntryPoint
     {
         public void Start()
         {
-            List<IAction> list = new List<IAction>();
+            IAction[] list = {
+                new DictionaryAction(),
+                new HashSetAction()
+            };
+            list[1].Run();
         }
     }
 }

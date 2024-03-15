@@ -8,7 +8,7 @@
             InputHelper.PrintColor("1 - Дальше?", ConsoleColor.Green);
             InputHelper.PrintColor("2 - Назад(", ConsoleColor.Green);
 
-            if (InputHelper.Input("", 1, 2, out int inputValue2_2))
+            if (InputHelper.ChangeInput("", 1, 2, out int inputValue2_2))
             {
                 switch (inputValue2_2)
                 {

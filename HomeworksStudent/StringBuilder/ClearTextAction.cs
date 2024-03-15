@@ -5,7 +5,7 @@
         public string Description => "Очистить весь текст";
 
         public StringBuilderService _inputManager = StringBuilderService.Instance;
-        public ButtonYesOrNo _buttonYesOrNo = ButtonYesOrNo.Instance;
+        public ButtonYesOrNo _buttonYesOrNo = ServiceLocator.Instance.ButtonYesOrNo;
 
         public void Run()
         {

@@ -3,7 +3,7 @@
     public class ReplaceAction : IAction, IDescription
     {
         private StringBuilderService _inputManager = StringBuilderService.Instance;
-        private ButtonYesOrNo _buttonYesOrNo = ButtonYesOrNo.Instance;
+        private ButtonYesOrNo _buttonYesOrNo = ServiceLocator.Instance.ButtonYesOrNo;
 
         public string Description => "Замена строк";
         private const string EMPTY_STRING_ERROR = "Строка не может быть пустой!";

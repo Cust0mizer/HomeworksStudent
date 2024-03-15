@@ -9,7 +9,7 @@
 
             while (true)
             {
-                if (InputHelper.Input("1 - Взять домино", 1, 1, out int inputValue))
+                if (InputHelper.ChangeInput("1 - Взять домино", 1, 1, out int inputValue))
                 {
                     dominoManager.TakeDomino();
                 }

@@ -1,6 +1,6 @@
 ﻿namespace HomeworksStudent.EnemyOverride
 {
-    public class Player
+    public class Player2
     {
         private Gun _gun;
 
