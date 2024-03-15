@@ -8,7 +8,7 @@
             InputHelper.PrintColor("1 - Да!", ConsoleColor.Green);
             InputHelper.PrintColor("2 - Нет(", ConsoleColor.Green);
 
-            if (InputHelper.Input("", 1, 2, out int inputValue2_1))
+            if (InputHelper.ChangeInput("", 1, 2, out int inputValue2_1))
             {
                 switch (inputValue2_1)
                 {

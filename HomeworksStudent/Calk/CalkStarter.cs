@@ -10,7 +10,7 @@ namespace HomeworksStudent.Calk
 
             while (true)
             {
-                if (InputHelper.Input(GetDescriptinoForActions(actions), min: 1, max: actions.Length, out var inputValue))
+                if (InputHelper.ChangeInput(GetDescriptinoForActions(actions), min: 1, max: actions.Length, out var inputValue))
                 {
                     actions[inputValue - 1].Run();
                 }
@@ -44,3 +44,6 @@ namespace HomeworksStudent.Calk
         }
     }
 }
+//Не должны зависить от реализций, а от абстракций
+//Реализация - ActionSum, ActionMinus...
+//Асбтракция - Action

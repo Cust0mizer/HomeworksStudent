@@ -5,17 +5,21 @@ public class EntryPoint
     public static void Main()
     {
         List<IEntryPoint> list = new List<IEntryPoint>();
-        // Загрузка всех сборок в текущем домене приложения
         var assemblies = AppDomain.CurrentDomain.GetAssemblies();
         StringBuilder stringBuilder = new StringBuilder();
 
         foreach (var assembly in assemblies)
         {
-            // Получение всех типов в сборке
             var types = assembly.GetTypes();
+            List<Type> implementingTypes = new List<Type>();
 
-            // Фильтрация типов, реализующих интересующий интерфейс
-            List<Type> implementingTypes = types.Where(x => x.GetInterfaces().Contains(typeof(IEntryPoint))).ToList();
+            foreach (var type in types)
+            {
+                if (type.GetInterfaces().Contains(typeof(IEntryPoint)))
+                {
+                    implementingTypes.Add(type);
+                }
+            }
 
             for (int i = 0; i < implementingTypes.Count; i++)
             {
@@ -28,7 +32,7 @@ public class EntryPoint
 
         while (true)
         {
-            if (InputHelper.Input(stringBuilder, 1, list.Count, out int inputValue))
+            if (InputHelper.ChangeInput(stringBuilder, 1, list.Count, out int inputValue))
             {
                 list[inputValue - 1].Start();
             }

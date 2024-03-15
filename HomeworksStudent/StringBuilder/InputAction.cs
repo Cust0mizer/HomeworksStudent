@@ -29,7 +29,7 @@ namespace HomeworksStudent.PersonAbstract.StringBuilders
             {
                 if (EntryStringBuilder.IS_CHANGE_APPEND_ENABLE)
                 {
-                    if (InputHelper.Input(GetLineModeDescription(), (int)list[0], (int)list[list.Count - 1], out int inputValue))
+                    if (InputHelper.ChangeInput(GetLineModeDescription(), (int)list[0], (int)list[list.Count - 1], out int inputValue))
                     {
                         _inputManager.AddNewText(appendText, (LineMode)inputValue);
                         break;

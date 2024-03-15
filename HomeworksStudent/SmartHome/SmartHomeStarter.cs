@@ -1,5 +1,4 @@
-﻿using HomeworksStudent.Homeworks.Sedishev.Shop;
-using HomeworksStudent.PersonAbstract.StringBuilders;
+﻿using HomeworksStudent.PersonAbstract.StringBuilders;
 using System.Text;
 
 namespace HomeworksStudent.SmartHome
@@ -8,30 +7,11 @@ namespace HomeworksStudent.SmartHome
     {
         public void Start()
         {
-            HomeManager.Instance.StartAction<LightOff>();
-            Thread.Sleep(2000);
-            HomeManager.Instance.StartAction<LightOn>();
-            Thread.Sleep(2000);
-            HomeManager.Instance.StartAction<WaterStart>();
-
-            //List<IComandd> listComand = new List<IComandd>();
-            //listComand.Add(new InputComand());
-            //listComand.Add(new CreateUserComand());
-
-            //StringBuilder stringBuilder = new StringBuilder();
-
-            //for (var i = 0; i < listComand.Count; i++)
-            //{
-            //    stringBuilder.AppendLine($"{i + 1} - {listComand[i].Description}");
-            //}
-
-            //while (true)
-            //{
-            //    if (InputHelper.Input(stringBuilder, 1, listComand.Count, out int inputValue))
-            //    {
-            //        listComand[inputValue - 1].Run();
-            //    }
-            //}
+            //HomeManager.Instance.StartAction<LightOff>();
+            //Thread.Sleep(2000);
+            //HomeManager.Instance.StartAction<LightOn>();
+            //Thread.Sleep(2000);
+            //HomeManager.Instance.StartAction<WaterStart>();
         }
     }
 
@@ -58,86 +38,6 @@ namespace HomeworksStudent.SmartHome
         public void Run()
         {
             Console.WriteLine("Эта реализация не похожа на первую");
-        }
-    }
-
-    public class CreateUserComand : IComandd
-    {
-        public string Description => "Создать пользователя";
-
-        public void Run()
-        {
-            Console.WriteLine("Введите имя пользователя");
-            string userName = Console.ReadLine();
-            Console.WriteLine("Введите пароль");
-            string userPassword = Console.ReadLine();
-            UserManager.Instance.AddUser(new User(userName, userPassword));
-        }
-    }
-
-    public class InputComand : IComandd
-    {
-        public string Description => "Вход в аккаунт";
-
-        public void Run()
-        {
-            Console.WriteLine("Введите имя пользователя");
-            string userName = Console.ReadLine();
-            Console.WriteLine("Введите пароль");
-            string userPassword = Console.ReadLine();
-            if (UserManager.Instance.CheckUser(userName, userPassword))
-            {
-                Console.WriteLine("Вы вошли в приложение!");
-            }
-        }
-    }
-
-    public class UserManager
-    {
-        public static readonly UserManager Instance;
-        static UserManager()
-        {
-            Instance = new UserManager();
-        }
-        private UserManager()
-        { }
-
-        private List<User> _users = new List<User>();
-
-        public void AddUser(User user)
-        {
-            _users.Add(user);
-        }
-
-        public bool CheckUser(string userName, string password)
-        {
-            bool result = false;
-
-            foreach (var item in _users)
-            {
-                if (item.UserName == userName)
-                {
-                    result = item.PasswordIsTrue(password);
-                }
-            }
-            return result;
-        }
-    }
-
-    public class User
-    {
-        public readonly string UserName;
-        public readonly string Password;
-
-        public User(string userName, string password)
-        {
-            UserName = userName;
-            Password = password;
-        }
-
-        public bool PasswordIsTrue(string password)
-        {
-            return Password == password;
         }
     }
 
@@ -180,7 +80,7 @@ namespace HomeworksStudent.SmartHome
 
             while (true)
             {
-                if (InputHelper.Input(GetDescription(), 1, _products.Count, out int inputValue))
+                if (InputHelper.ChangeInput(GetDescription(), 1, _products.Count, out int inputValue))
                 {
                     _products.RemoveAt(inputValue - 1);
                     break;
@@ -262,7 +162,7 @@ namespace HomeworksStudent.SmartHome
 
             while (true)
             {
-                if (InputHelper.Input(elem, 1, actions.Length, out int inputValue))
+                if (InputHelper.ChangeInput(elem, 1, actions.Length, out int inputValue))
                 {
                     actions[inputValue - 1].Run();
                 }
@@ -292,6 +192,8 @@ namespace HomeworksStudent.SmartHome
 //Работа команд осуществляется через Console.WriteLine();
 //Написать Singletone менеджер, который запускает каждую команду по отдельности
 
+
+
 //Задача 3
 //Каждое действие - отдельная команда
 //Система управления пользователями есть возможность:
@@ -299,4 +201,6 @@ namespace HomeworksStudent.SmartHome
 //2 - Удалить пользователя.
 //3 - Получить информацию о пользователях (Имя пользователя, фамилия пользователя, дата добавления пользователя)
 //Пользователи должны храниться в менеджере пользователей который содержит коллекцию этих пользователей и производит с ними вышеописанные действия
-
+//Удаление:
+//Выводится список пользователей и их номера в списке
+//Я могу выбрать нажатием на клавишу, какого пользователя я хочу удалить
