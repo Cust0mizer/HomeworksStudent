@@ -1,5 +1,4 @@
 ﻿using HomeworksStudent;
-using HomeworksStudent.SmartHome;
 using System.Text;
 
 namespace ProductShopAndMenu
@@ -8,9 +7,10 @@ namespace ProductShopAndMenu
     {
         private BackButton _backButton = ServiceLocator.Instance.BackButton;
 
-        public void ShowProduct(List<Product> products)
+        public void ShowProducts(List<Product> products)
         {
             ShowAllProductInfo(products);
+
             while (true)
             {
                 if (InputHelper.ChangeInput("", 1, products.Count, out int inputUserValue))
@@ -26,6 +26,7 @@ namespace ProductShopAndMenu
         public void ShowAllProductInfo(List<Product> products)
         {
             StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine("Выберети продукт");
             stringBuilder.GetDescriptionForNames(products);
             Console.WriteLine(stringBuilder);
         }

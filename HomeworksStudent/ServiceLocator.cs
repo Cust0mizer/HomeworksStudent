@@ -16,13 +16,13 @@ namespace HomeworksStudent
 
         public readonly ButtonYesOrNo ButtonYesOrNo;
         public readonly BackButton BackButton;
-        public readonly Shop Shop;
+        public readonly ShopModel Shop;
 
         private ServiceLocator()
         {
             ButtonYesOrNo = new ButtonYesOrNo();
             BackButton = new BackButton();
-            Shop = new Shop();
+            Shop = new ShopModel();
         }
     }
 }

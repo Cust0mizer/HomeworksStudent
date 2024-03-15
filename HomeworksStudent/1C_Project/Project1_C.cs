@@ -6,7 +6,12 @@ namespace ProductShopAndMenu
     {
         public void Start()
         {
-            IMenuItem[] menuItems = { new AddComand(), new RemoveComand(), new ShowProductInfoComand() };
+            IMenuItem[] menuItems = {
+                new AddComand(),
+                new RemoveComand(),
+                new ShowProductInfoComand(),
+                new ShowProductForCategory()
+            };
             Menu menu = new Menu(menuItems);
             menu.Start();
         }

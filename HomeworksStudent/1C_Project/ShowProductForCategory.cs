@@ -3,9 +3,9 @@ using HomeworksStudent;
 
 namespace ProductShopAndMenu
 {
-    public class RemoveComand : IAction, IMenuItem
+    public class ShowProductForCategory : IAction, IMenuItem
     {
-        public string Description => "Удаление продуктов";
+        public string Description => "Показать все продукты по категории";
         private BackButton _backButton = ServiceLocator.Instance.BackButton;
         private ShopModel _shop = ServiceLocator.Instance.Shop;
 

@@ -8,7 +8,7 @@ namespace ProductShopAndMenu
     {
         public string Description => "Добавление продуктов";
 
-        private Shop _shop = ServiceLocator.Instance.Shop;
+        private ShopModel _shop = ServiceLocator.Instance.Shop;
 
         public void Run()
         {
