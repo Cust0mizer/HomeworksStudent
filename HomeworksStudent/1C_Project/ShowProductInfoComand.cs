@@ -1,43 +1,29 @@
 ﻿using HomeworksStudent.MenuProject;
 using HomeworksStudent;
 using System.Text;
-using HomeworksStudent.InstallComand;
 
-namespace ProductShopAndMenu
-{
-    public class ShowProductInfoComand : IAction, IMenuItem
-    {
+namespace ProductShopAndMenu {
+    public class ShowProductInfoComand : IAction, IMenuItem {
         public string Description => "Показать информацию о продуктах";
         private BackButton _backButton = ServiceLocator.Instance.BackButton;
         private ShopModel _shop = ServiceLocator.Instance.Shop;
 
-        public void Run()
-        {
-            if (_shop.ContainsProduct())
-            {
+        public void Run() {
+            if (_shop.ContainsProduct()) {
                 _shop.ShowProductInfo();
             }
-            else
-            {
+            else {
                 ShopErrorHelper.NoProductMessage();
                 _backButton.AwaitBackClick();
             }
         }
     }
+}
 
-
-
-
-
-
-
-
-
-
-    public class ControlStarter : IEntryPoint
-    {
-        public void Start()
-        {
+//Это контрольная для рпо 1
+namespace Control {
+    public class ControlStarter : IEntryPoint {
+        public void Start() {
             //Main
             IComand[] createAcounts =
             {
@@ -49,18 +35,14 @@ namespace ProductShopAndMenu
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.AppendLine("Выберите действие!");
 
-            for (int i = 0; i < createAcounts.Length; i++)
-            {
+            for (int i = 0; i < createAcounts.Length; i++) {
                 stringBuilder.AppendLine($"{i + 1} - {createAcounts[i].Description}");
             }
 
-            while (true)
-            {
+            while (true) {
                 Console.WriteLine(stringBuilder);
-                if (int.TryParse(Console.ReadLine(), out int inputValue))
-                {
-                    if (inputValue >= 1 && inputValue <= createAcounts.Length)
-                    {
+                if (int.TryParse(Console.ReadLine(), out int inputValue)) {
+                    if (inputValue >= 1 && inputValue <= createAcounts.Length) {
                         createAcounts[inputValue - 1].Run();
                     }
                 }
@@ -68,30 +50,24 @@ namespace ProductShopAndMenu
         }
     }
 
-    public interface IComand
-    {
+    public interface IComand {
         public string Description { get; }
         public void Run();
     }
 
-    public class CreateAcount : IComand
-    {
+    public class CreateAcount : IComand {
         public string Description => "Создать аккаунт";
 
-        public void Run()
-        {
+        public void Run() {
             Console.WriteLine("Введите имя пользователя");
             string login = Console.ReadLine();
 
-            if (!string.IsNullOrWhiteSpace(login))
-            {
+            if (!string.IsNullOrWhiteSpace(login)) {
                 Console.WriteLine("Введите пароль");
                 string password = Console.ReadLine();
 
-                if (!string.IsNullOrWhiteSpace(password))
-                {
-                    if (!AccountManager.Instance.ContainsLogin(login))
-                    {
+                if (!string.IsNullOrWhiteSpace(password)) {
+                    if (!AccountManager.Instance.ContainsLogin(login)) {
                         AccountManager.Instance.AddAccount(new Account(login, password));
                     }
                 }
@@ -99,33 +75,27 @@ namespace ProductShopAndMenu
         }
     }
 
-    public class ShowInfoAcount : IComand
-    {
+    public class ShowInfoAcount : IComand {
         public string Description => "Показать информацию о аккаунтах";
 
-        public void Run()
-        {
+        public void Run() {
             AccountManager.Instance.ShowAccountInfo();
         }
     }
 
-    public class LoginAcount : IComand
-    {
+    public class LoginAcount : IComand {
         public string Description => "Войти в аккаунт";
 
-        public void Run()
-        {
+        public void Run() {
             Console.WriteLine("Пока ничего нет!");
         }
     }
 
-    public class AccountManager
-    {
+    public class AccountManager {
         #region Singletone
         public readonly static AccountManager Instance;
 
-        static AccountManager()
-        {
+        static AccountManager() {
             Instance = new AccountManager();
         }
         private AccountManager() { }
@@ -133,32 +103,25 @@ namespace ProductShopAndMenu
 
         private List<Account> _accounts = new List<Account>();
 
-        public void AddAccount(Account account)
-        {
+        public void AddAccount(Account account) {
             _accounts.Add(account);
         }
 
-        public void LoginAccount()
-        {
+        public void LoginAccount() {
 
         }
 
-        public void ShowAccountInfo()
-        {
-            foreach (var item in _accounts)
-            {
+        public void ShowAccountInfo() {
+            foreach (var item in _accounts) {
                 item.PrintInfo();
             }
         }
 
-        public bool ContainsLogin(string login)
-        {
+        public bool ContainsLogin(string login) {
             bool result = false;
 
-            foreach (var account in _accounts)
-            {
-                if (account.Login == login)
-                {
+            foreach (var account in _accounts) {
+                if (account.Login == login) {
                     result = true;
                     break;
                 }
@@ -168,19 +131,16 @@ namespace ProductShopAndMenu
         }
     }
 
-    public class Account
-    {
+    public class Account {
         public string Login { get; private set; }
         public string Password { get; private set; }
 
-        public Account(string login, string password)
-        {
+        public Account(string login, string password) {
             Login = login;
             Password = password;
         }
 
-        public void PrintInfo()
-        {
+        public void PrintInfo() {
             Console.Write($"Login - {Login}\tPassword - {Password}");
         }
     }

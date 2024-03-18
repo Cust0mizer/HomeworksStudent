@@ -1,7 +1,5 @@
-﻿namespace HomeworksStudent.MenuProject
-{
-    public class Menu
-    {
+﻿namespace HomeworksStudent.MenuProject {
+    public class Menu {
         private int _height;
         private int _width;
 
@@ -13,36 +11,29 @@
         private IMenuItem[] _menuItems;
         private List<IAction> _actions = new();
 
-        public Menu(IMenuItem[] menuItems)
-        {
+        public Menu(IMenuItem[] menuItems) {
             SetWindow();
             _menuItems = menuItems;
-            foreach (var item in menuItems)
-            {
-                if (item is IAction action)
-                {
+            foreach (var item in menuItems) {
+                if (item is IAction action) {
                     _actions.Add(action);
                 }
             }
         }
 
-        public void Start()
-        {
-            while (true)
-            {
+        public void Start(bool isClear) {
+            if (isClear) {
                 Console.Clear();
-                for (int i = 0; i < _menuItems.Length; i++)
-                {
-                    SetMenuItem(_menuItems[i], i == _currentElementIndex);
-                }
-                Input(Console.ReadKey().Key);
             }
+
+            for (int i = 0; i < _menuItems.Length; i++) {
+                SetMenuItem(_menuItems[i], i == _currentElementIndex);
+            }
+            Input(Console.ReadKey().Key);
         }
 
-        private void Input(ConsoleKey consoleKey)
-        {
-            switch (consoleKey)
-            {
+        private void Input(ConsoleKey consoleKey) {
+            switch (consoleKey) {
                 case ConsoleKey.DownArrow:
                     _currentElementIndex++;
                     break;
@@ -54,32 +45,34 @@
                     return;
             }
 
-            _currentElementIndex = Math.Clamp(_currentElementIndex, 0, _menuItems.Length - 1);
-            Start();
+            if (_currentElementIndex < 0) {
+                _currentElementIndex = _actions.Count - 1;
+            }
+            else if (_currentElementIndex == _actions.Count) {
+                _currentElementIndex = 0;
+            }
+
+            Start(true);
         }
 
-        public void SetMenuItem(IMenuItem menuItem, bool isSelectedItem)
-        {
+        public void SetMenuItem(IMenuItem menuItem, bool isSelectedItem) {
             //Console.CursorLeft = (int)(menuItem.PosX / _widthMultiply);
             //Console.CursorTop = (int)(menuItem.PosY / _heightMultiply);
-            if (isSelectedItem)
-            {
+            if (isSelectedItem) {
                 InputHelper.PrintGoodMessage(menuItem.Description);
             }
-            else
-            {
+            else {
                 Console.WriteLine(menuItem.Description);
             }
         }
 
-        private void SetWindow()
-        {
+        private void SetWindow() {
             Console.Clear();
-            _height = Console.LargestWindowHeight / 2;
-            _width = Console.LargestWindowWidth / 2;
+            //_height = Console.LargestWindowHeight;
+            //_width = Console.LargestWindowWidth;
             //_widthMultiply = 1080 / _height;
             //_heightMultiply = 1920 / _width;
-            Console.SetWindowSize(_width, _height);
+            //Console.SetWindowSize(_width, _height);
         }
     }
 }

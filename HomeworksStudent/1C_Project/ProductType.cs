@@ -1,7 +1,5 @@
-﻿namespace ProductShopAndMenu
-{
-    public enum ProductType
-    {
+﻿namespace ProductShopAndMenu {
+    public enum ProductType {
         Vegetables,
         Fruits,
         Bakery

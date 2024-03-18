@@ -1,6 +1,4 @@
 ﻿using R3;
-using System;
-using System.Transactions;
 
 namespace HomeworksStudent.EventAction {
     public class CoinObserver : IDisposable {
