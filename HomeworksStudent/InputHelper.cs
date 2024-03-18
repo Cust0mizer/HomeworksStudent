@@ -83,6 +83,18 @@ public static class InputHelper
         return result;
     }
 
+    public static bool ConvertEnumToType<TargetEnumType, ResultEnumType>(TargetEnumType firstEnumType, out ResultEnumType resultValue) where TargetEnumType : struct, Enum where ResultEnumType : struct, Enum
+    {
+        if (Enum.TryParse(firstEnumType.ToString(), out resultValue))
+        {
+            return true;
+        }
+        else
+        {
+            throw new KeyNotFoundException($"Error parse {firstEnumType.GetType().Name} to {resultValue.GetType().Name}");
+        }
+    }
+
     //public static bool IntInputField<T>(string text, out T userInputText) where T : INumber<T>
     //{
     //    bool result = false;

@@ -2,13 +2,10 @@
 
 namespace ProductShopAndMenu {
     public class ButtonEnumFactory {
-        Dictionary<Type, ProductTypeFactory> _factories = new() {
-                { typeof(ProductType), new ProductTypeFactory() },
-                { typeof(Locales), new ProductTypeFactory() },
-            };
+        private EnumButtonFactory enumButtonFactory = new();
 
-        public IMenuItem[] GetButtons<T>(Action<T> action) where T : Enum {
-            return _factories[typeof(T)].GetButtons(action).ToArray();
+        public IMenuItem[] GetButtonsByEnum<T>(Action<T> action) where T : struct, Enum {
+            return enumButtonFactory.GetButtons(action).ToArray();
         }
     }
 }

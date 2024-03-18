@@ -98,6 +98,8 @@
             { LocaleKey.ProductPriceText, "Цена продукта" },
             { LocaleKey.ProductNameText, "Имя продукта" },
             { LocaleKey.ProductTypeText, "Категория продукта" },
+            { LocaleKey.Ru, "Русский" },
+            { LocaleKey.En, "Английский" },
         };
 
         private static readonly Dictionary<LocaleKey, string> EnLocale = new Dictionary<LocaleKey, string>() {
@@ -119,6 +121,8 @@
             { LocaleKey.ProductPriceText, "Product price" },
             { LocaleKey.ProductNameText, "Product name" },
             { LocaleKey.ProductTypeText, "Product type" },
+            { LocaleKey.Ru, "Russian" },
+            { LocaleKey.En, "English" },
         };
 
         public static Dictionary<LocaleKey, string> GetLocale(Locales locales)
@@ -159,6 +163,8 @@
         ProductNameText,
         ProductTypeText,
         ProductPriceText,
+        Ru,
+        En
     }
 
     public enum Locales
@@ -167,3 +173,11 @@
         En
     }
 }
+
+
+
+//Создать класс который будет содержать словарь где ключ и значение будут string
+//Сделать из класса синглетон
+//Создать метод, куда мы будем передавать ключ и получать значение из словоря по ключу
+//Создать статический класс, который содержит в себе 2 словоря, с английскими словами и русскими
+//Заполнить словарь вашими ключами и значениями из программы

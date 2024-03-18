@@ -13,7 +13,7 @@ namespace ProductShopAndMenu
         public void Run() {
             if (_shop.ContainsProduct()) {
                 Action<ProductType> action = _shop.ShowProductByType;
-                Menu menu = new Menu(_enumFactory.GetButtons(action));
+                Menu menu = new Menu(_enumFactory.GetButtonsByEnum(action));
                 menu.Start(true, _localizationManager.GetLocaleText(LocaleKey.SelectAction));
             }
             else {

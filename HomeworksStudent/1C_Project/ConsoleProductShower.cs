@@ -1,6 +1,4 @@
-﻿using Google.Apis.Util;
-using HomeworksStudent;
-using HomeworksStudent.SmartHome;
+﻿using HomeworksStudent;
 using System.Text;
 
 namespace ProductShopAndMenu
@@ -49,30 +47,25 @@ namespace ProductShopAndMenu
 
         private void ShowProductInfo(Product product)
         {
-            LocaleKey result = ConvertEnumToType<ProductType, LocaleKey>(product.ProductType);
-            if (Enum.TryParse(product.ProductType.ToString(), out LocaleKey localeKey))
+            if (InputHelper.ConvertEnumToType(product.ProductType, out LocaleKey resultValue))
             {
-                Console.WriteLine($"{_localizationManager.GetLocaleText(LocaleKey.ProductTypeText)} - {_localizationManager.GetLocaleText(localeKey)}");
+                Console.WriteLine($"{_localizationManager.GetLocaleText(LocaleKey.ProductTypeText)} - {_localizationManager.GetLocaleText(resultValue)}");
             }
             else
             {
-                throw new KeyNotFoundException($"Error parse {product.ProductType} to {localeKey}");
+                throw new KeyNotFoundException($"Error parse {product.ProductType} to {resultValue}");
             }
 
             Console.WriteLine($"{_localizationManager.GetLocaleText(LocaleKey.ProductPriceText)} - {product.Price}");
             Console.WriteLine($"{_localizationManager.GetLocaleText(LocaleKey.ProductNameText)} - {product.Name}");
         }
-
-        private ResultEnumType ConvertEnumToType<TargetEnumType, ResultEnumType>(TargetEnumType firstEnumType) where TargetEnumType : struct, Enum where ResultEnumType : struct, Enum
-        {
-            if (Enum.TryParse(firstEnumType.ToString(), out ResultEnumType localeKey))
-            {
-                return localeKey;
-            }
-            else
-            {
-                throw new KeyNotFoundException($"Error parse {firstEnumType.GetType().Name} to {localeKey.GetType().Name}");
-            }
-        }
     }
 }
+
+
+
+//В классе где один словарь сделать метод SetLocale, где в зависимости от принимаемого значения, Ru или En, присваивать в наш словарь именно тот словарь, который нужен:]
+
+//Добавить команду, которая реализует интерфейс команды и предоставляет пользователю выбор, 1 или 2
+//Добавить в программу команду, где пользователю дается выбор, при нажатии на 1 - выбирается английский язык, при нажатии на 2 - выбирается русский язык.
+//Везде где используется текст, нужно прокинуть ссылку на ЛОКАЛЕ МАНАДЖЕР, и во всей программе, вместо текста нужно использовать GetLocaleText(key).
