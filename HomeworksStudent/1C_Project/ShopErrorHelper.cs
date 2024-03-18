@@ -1,12 +1,14 @@
-﻿namespace ProductShopAndMenu
+﻿using HomeworksStudent;
+
+namespace ProductShopAndMenu
 {
     public static class ShopErrorHelper
     {
-        private const string NO_PRODUCT = "Нет продуктов в магазине!";
+        private static LocalizationManager _localizationManager = ServiceLocator.Instance.LocalizationManager;
 
         public static void NoProductMessage()
         {
-            InputHelper.PrintError(NO_PRODUCT);
+            InputHelper.PrintError(_localizationManager.GetLocaleText(LocaleKey.NoProduct));
         }
     }
 }

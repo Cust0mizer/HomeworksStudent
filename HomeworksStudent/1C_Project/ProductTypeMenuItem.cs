@@ -1,11 +1,12 @@
 ﻿using HomeworksStudent.MenuProject;
 using HomeworksStudent;
-using System.CodeDom;
 
-namespace ProductShopAndMenu {
+namespace ProductShopAndMenu
+{
     public class ProductTypeMenuItem<T1> : IMenuItem, IAction {
         public event Action<T1> OnClick;
-        public string Description => _productType.ToString();
+        public string Description => _localizationManager.GetLocaleText(LocaleKey.Vegetables);
+        private LocalizationManager _localizationManager = ServiceLocator.Instance.LocalizationManager;
 
         private readonly T1 _productType;
 

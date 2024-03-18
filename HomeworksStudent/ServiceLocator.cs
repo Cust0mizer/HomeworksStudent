@@ -12,17 +12,17 @@ namespace HomeworksStudent {
         #endregion
 
         public readonly ButtonEnumFactory ButtonEnumFactory;
-        public readonly TranslateModule TranslateModule;
+        public readonly LocalizationManager LocalizationManager;
         public readonly ButtonYesOrNo ButtonYesOrNo;
         public readonly BackButton BackButton;
         public readonly ShopModel Shop;
 
         private ServiceLocator() {
             ButtonEnumFactory = new ButtonEnumFactory();
-            TranslateModule = new TranslateModule(Locales.Ru);
             ButtonYesOrNo = new ButtonYesOrNo();
             BackButton = new BackButton();
-            Shop = new ShopModel(new ConsoleProductShower(this));
+            LocalizationManager = new LocalizationManager(Locales.Ru);
+            Shop = new ShopModel(new ConsoleProductShower(this, LocalizationManager));
         }
     }
 }

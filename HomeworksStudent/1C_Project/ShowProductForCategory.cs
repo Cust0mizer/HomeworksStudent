@@ -1,10 +1,11 @@
 ﻿using HomeworksStudent.MenuProject;
 using HomeworksStudent;
-using End;
 
-namespace ProductShopAndMenu {
+namespace ProductShopAndMenu
+{
     public class ShowProductForCategory : IAction, IMenuItem {
-        public string Description => "Показать все продукты по категории";
+        public string Description => _localizationManager.GetLocaleText(LocaleKey.ShowProductsByCategory);
+        private LocalizationManager _localizationManager = ServiceLocator.Instance.LocalizationManager;
         private ButtonEnumFactory _enumFactory = ServiceLocator.Instance.ButtonEnumFactory;
         private BackButton _backButton = ServiceLocator.Instance.BackButton;
         private ShopModel _shop = ServiceLocator.Instance.Shop;
@@ -13,7 +14,7 @@ namespace ProductShopAndMenu {
             if (_shop.ContainsProduct()) {
                 Action<ProductType> action = _shop.ShowProductByType;
                 Menu menu = new Menu(_enumFactory.GetButtons(action));
-                menu.Start(true);
+                menu.Start(true, _localizationManager.GetLocaleText(LocaleKey.SelectAction));
             }
             else {
                 ShopErrorHelper.NoProductMessage();

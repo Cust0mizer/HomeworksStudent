@@ -5,7 +5,8 @@ namespace ProductShopAndMenu
 {
     public class RemoveComand : IAction, IMenuItem
     {
-        public string Description => "Удаление продуктов";
+        public string Description => _localizationManager.GetLocaleText(LocaleKey.RemoveProduct);
+        private LocalizationManager _localizationManager = ServiceLocator.Instance.LocalizationManager;
         private BackButton _backButton = ServiceLocator.Instance.BackButton;
         private ShopModel _shop = ServiceLocator.Instance.Shop;
 

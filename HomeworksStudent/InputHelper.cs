@@ -35,7 +35,7 @@ public static class InputHelper
     public static bool ChangeInput(string text, int min, int max, out int inputValue)
     {
         bool result = false;
-        if (!string.IsNullOrEmpty(text))
+        if (!string.IsNullOrWhiteSpace(text))
         {
             Console.WriteLine(text);
         }
