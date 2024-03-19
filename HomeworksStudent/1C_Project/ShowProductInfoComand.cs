@@ -2,6 +2,7 @@
 using HomeworksStudent;
 using System.Text;
 
+#region My
 namespace ProductShopAndMenu
 {
     public class ShowProductInfoComand : IAction, IMenuItem
@@ -25,6 +26,7 @@ namespace ProductShopAndMenu
         }
     }
 }
+#endregion
 
 //Это контрольная для рпо 1
 namespace Control
@@ -166,7 +168,10 @@ namespace Control
 
                     if (AccountManager.Instance.CheckPassword(login, password))
                     {
-
+                        TaskManager.Instance.SetAccount(AccountManager.Instance.GetAccount(login));
+                        ProgramScreen programScreen = new ProgramScreen();
+                        programScreen.Start();
+                        return;
                     }
                 }
             }
@@ -177,21 +182,31 @@ namespace Control
     {
         public void Start()
         {
-            while (true)
+            IComand[] createAcounts =
             {
-                IComand[] createAcounts =
-                {
-
+                    new AddTask(),
+                    new RemoveTask(),
+                    new ShowInfoAcount(),
+                    new ExitAccountComand(),
                 };
 
-                while (true)
+            while (TaskManager.Instance.CurrentAccount != null)
+            {
+                if (InputHelper.CheckInput(DescriptionHelper.GetDescription(createAcounts), 1, createAcounts.Length, out int inputValue))
                 {
-                    if (InputHelper.CheckInput(DescriptionHelper.GetDescription(createAcounts), 1, createAcounts.Length, out int inputValue))
-                    {
-                        createAcounts[inputValue - 1].Run();
-                    }
+                    createAcounts[inputValue - 1].Run();
                 }
             }
+        }
+    }
+
+    public class ExitAccountComand : IComand
+    {
+        public string Description => "Выйти из аккаунта";
+
+        public void Run()
+        {
+            TaskManager.Instance.SetAccount(null);
         }
     }
 
@@ -263,34 +278,36 @@ namespace Control
         private TaskManager() { }
         #endregion
 
-        private List<Task> _tasks = new List<Task>();
+        public Account CurrentAccount { get; private set; }
+
+        public void SetAccount(Account account)
+        {
+            CurrentAccount = account;
+        }
 
         public void AddTask(Task task)
         {
-            _tasks.Add(task);
+            CurrentAccount.AddTask(task);
         }
 
         public void RemoveTask(int index)
         {
-            _tasks.RemoveAt(index);
+            CurrentAccount.RemoveTask(index);
         }
 
         public void ShowTaskInfo(int index)
         {
-            _tasks[index].ShowTaskInfo();
+            CurrentAccount.ShowInfoTask(index);
         }
 
         public void ShowTaskName()
         {
-            for (int i = 0; i < _tasks.Count; i++)
-            {
-                Console.WriteLine($"{i + 1} - {_tasks[i].Name}");
-            }
+            CurrentAccount.ShowTaskName();
         }
 
         public int GetListCount()
         {
-            return _tasks.Count;
+            return CurrentAccount.GetCount();
         }
     }
 
@@ -334,9 +351,19 @@ namespace Control
             _accounts.Add(account);
         }
 
-        public void LoginAccount()
+        public Account GetAccount(string login)
         {
+            Account? result = null;
 
+            foreach (var account in _accounts)
+            {
+                if (account.Login == login)
+                {
+                    result = account;
+                    break;
+                }
+            }
+            return result;
         }
 
         public void ShowAccountInfo()
@@ -384,6 +411,7 @@ namespace Control
     {
         public string Login { get; private set; }
         public string Password { get; private set; }
+        private List<Task> _tasks = new List<Task>();
 
         public Account(string login, string password)
         {
@@ -395,5 +423,61 @@ namespace Control
         {
             Console.Write($"Login - {Login}\tPassword - {Password}");
         }
+
+        public void AddTask(Task task)
+        {
+            _tasks.Add(task);
+        }
+
+        public void RemoveTask(int index)
+        {
+            _tasks.RemoveAt(index);
+        }
+
+        public void ShowInfoTask(int index)
+        {
+            _tasks[index].ShowTaskInfo();
+        }
+
+        public void ShowTaskName()
+        {
+            for (int i = 0; i < _tasks.Count; i++)
+            {
+                Console.WriteLine($"{i + 1} - {_tasks[i].Name}");
+            }
+        }
+
+        public int GetCount()
+        {
+            return _tasks.Count;
+        }
     }
 }
+
+
+
+
+//Задача 2
+//Система управления умным домом
+//Команда на включения света
+//Команда на выключение света
+//Команда на запуск робота пылесоса
+//Команда на подачу воды
+//Команда на включение сигнализации
+//Команда на заказ еды
+//Работа команд осуществляется через Console.WriteLine();
+//Написать Singletone менеджер,
+//который запускает каждую команду по отдельности
+//Сделать меню по запуску команд
+
+
+//Задача 1
+//Система управления заказами в интернет-магазине: 
+//Реализовать систему, которая позволяет пользователям добавлять товары в корзину, 
+//удалять их и отправлять заказ. 
+//Каждая операция (добавление, удаление, отправка заказа(Cw("Отправил"))) 
+//должна быть инкапсулирована в отдельный объект команды.
+//Корзина должна быть синглетоном.
+//В заказе должно быть:
+//Цена, имя товара и вес
+//Добавить команду на вывод информации о заказе

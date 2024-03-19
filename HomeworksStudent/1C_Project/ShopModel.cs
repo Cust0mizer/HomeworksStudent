@@ -169,7 +169,7 @@
 
     public enum Locales
     {
-        Ru,
+        Ru = 1,
         En
     }
 }

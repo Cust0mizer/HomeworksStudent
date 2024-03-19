@@ -7,5 +7,10 @@ namespace ProductShopAndMenu {
         public IMenuItem[] GetButtonsByEnum<T>(Action<T> action) where T : struct, Enum {
             return enumButtonFactory.GetButtons(action).ToArray();
         }
+
+        public void GetButtonsByShopItem<T>(Action<T> action) where T : struct, Enum
+        {
+
+        }
     }
 }

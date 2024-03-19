@@ -11,19 +11,6 @@ namespace ProductShopAndMenu
 
         public void Run()
         {
-            if (InputHelper.ChangeInput("", 1, 2, out int value))
-            {
-                if (value == 1)
-                {
- ServiceLocator.Instance.LocalizationManager.SetLocale(Locales.Ru);
-                }
-                else
-                {
-  ServiceLocator.Instance.LocalizationManager.SetLocale(Locales.En);
-                }
-            }
-
-
             Action<Locales> action = _localizationManager.SetLocale;
             Menu menu = new Menu(_enumFactory.GetButtonsByEnum(action));
             menu.Start(true, _localizationManager.GetLocaleText(LocaleKey.SelectAction));

@@ -58,6 +58,7 @@ namespace ProductShopAndMenu
 
             Console.WriteLine($"{_localizationManager.GetLocaleText(LocaleKey.ProductPriceText)} - {product.Price}");
             Console.WriteLine($"{_localizationManager.GetLocaleText(LocaleKey.ProductNameText)} - {product.Name}");
+            Console.WriteLine(Directory.GetCurrentDirectory());
         }
     }
 }
