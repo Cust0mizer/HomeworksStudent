@@ -3,7 +3,7 @@ using HomeworksStudent;
 
 namespace ProductShopAndMenu
 {
-    public class RemoveComand : IAction, IMenuItem
+    public class RemoveComand : IButton
     {
         public string Description => _localizationManager.GetLocaleText(LocaleKey.RemoveProduct);
         private LocalizationManager _localizationManager = ServiceLocator.Instance.LocalizationManager;
@@ -16,10 +16,8 @@ namespace ProductShopAndMenu
             {
                 _shop.ShowAllProductInfo();
 
-                if (InputHelper.ChangeInput("", 1, _shop.GetProductCount(), out int inputValue))
-                {
-                    _shop.RemoveProduct(inputValue - 1);
-                }
+                Menu menu = new Menu(_shop.GetMenuButtons());
+                menu.Start(true, "");
             }
             else
             {

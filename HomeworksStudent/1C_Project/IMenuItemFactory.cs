@@ -1,7 +1,5 @@
-﻿using HomeworksStudent.MenuProject;
-
-namespace ProductShopAndMenu {
+﻿namespace ProductShopAndMenu {
     public interface IMenuItemFactory {
-        public List<IMenuItem> GetButtons<T>(Action<T> action) where T :struct, Enum;
+        public List<IButton> GetButtons<T>(Action<T> action) where T :struct, Enum;
     }
 }

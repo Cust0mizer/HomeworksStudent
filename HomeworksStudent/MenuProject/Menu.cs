@@ -1,4 +1,5 @@
-﻿using System.Data.Common;
+﻿using ProductShopAndMenu;
+using System.Data.Common;
 
 namespace HomeworksStudent.MenuProject
 {
@@ -15,16 +16,12 @@ namespace HomeworksStudent.MenuProject
         private IMenuItem[] _menuItems;
         private List<IAction> _actions = new();
 
-        public Menu(IMenuItem[] menuItems)
+        public Menu(IButton[] menuItems)
         {
-            SetWindow();
-            _menuItems = menuItems;
+            Console.Clear();
             foreach (var item in menuItems)
             {
-                if (item is IAction action)
-                {
-                    _actions.Add(action);
-                }
+                _actions.Add(item);
             }
         }
 
@@ -76,8 +73,6 @@ namespace HomeworksStudent.MenuProject
 
         public void SetMenuItem(IMenuItem menuItem, bool isSelectedItem)
         {
-            //Console.CursorLeft = (int)(menuItem.PosX / _widthMultiply);
-            //Console.CursorTop = (int)(menuItem.PosY / _heightMultiply);
             if (isSelectedItem)
             {
                 InputHelper.PrintGoodMessage(menuItem.Description);
@@ -86,16 +81,6 @@ namespace HomeworksStudent.MenuProject
             {
                 Console.WriteLine(menuItem.Description);
             }
-        }
-
-        private void SetWindow()
-        {
-            Console.Clear();
-            //_height = Console.LargestWindowHeight;
-            //_width = Console.LargestWindowWidth;
-            //_widthMultiply = 1080 / _height;
-            //_heightMultiply = 1920 / _width;
-            //Console.SetWindowSize(_width, _height);
         }
     }
 }

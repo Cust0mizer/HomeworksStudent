@@ -3,7 +3,7 @@ using HomeworksStudent;
 
 namespace ProductShopAndMenu
 {
-    public class ShowProductForCategory : IAction, IMenuItem {
+    public class ShowProductForCategory : IButton {
         public string Description => _localizationManager.GetLocaleText(LocaleKey.ShowProductsByCategory);
         private LocalizationManager _localizationManager = ServiceLocator.Instance.LocalizationManager;
         private ButtonEnumFactory _enumFactory = ServiceLocator.Instance.ButtonEnumFactory;
