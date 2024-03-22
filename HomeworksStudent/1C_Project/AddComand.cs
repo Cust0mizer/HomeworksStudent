@@ -17,7 +17,7 @@ namespace ProductShopAndMenu
                 if (int.TryParse(Console.ReadLine(), out int price)) {
                     Action<ProductType> action = SetProductType;
                     Menu menu = new Menu(_enumFactory.GetButtonsByEnum(action));
-                    menu.Start(false, _translateModule.GetLocaleText(LocaleKey.SelectProductType));
+                    menu.Start(_translateModule.GetLocaleText(LocaleKey.SelectProductType));
                     Console.WriteLine(_translateModule.GetLocaleText(LocaleKey.SetProductType));
                     _shop.AddProduct(new Product(_productType, productName, price));
                 }

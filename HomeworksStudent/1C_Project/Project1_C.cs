@@ -5,22 +5,36 @@ namespace ProductShopAndMenu
 {
     public class Project1_C : IEntryPoint
     {
-        LocalizationManager _localizationManager = ServiceLocator.Instance.LocalizationManager;
+        private LocalizationManager _localizationManager = ServiceLocator.Instance.LocalizationManager;
 
         public void Start()
         {
-            IButton[] menuItems = {
+            IButton[] noProductButton = {
                 new AddComand(),
-                new RemoveComand(),
+                new SetLocaleComand(),
+            };
+
+            IButton[] containsProductButton = {
+                new AddComand(),
                 new ShowProductInfoComand(),
+                new RemoveComand(),
                 new ShowProductForCategory(),
                 new SetLocaleComand(),
             };
 
-            Menu menu = new Menu(menuItems);
+            Menu containsProductMenu = new Menu(containsProductButton);
+            Menu noProductMenu = new Menu(noProductButton);
+
             while (true)
             {
-                menu.Start(true, _localizationManager.GetLocaleText(LocaleKey.SelectAction));
+                if (ServiceLocator.Instance.Shop.ContainsProduct())
+                {
+                    containsProductMenu.Start(_localizationManager.GetLocaleText(LocaleKey.SelectAction));
+                }
+                else
+                {
+                    noProductMenu.Start(_localizationManager.GetLocaleText(LocaleKey.SelectAction));
+                }
             }
         }
     }
@@ -37,7 +51,8 @@ namespace ProductShopAndMenu
 //Задача это (Имя задачи, цели задачи, дата добавления)
 //О каждой задаче можно посмотреть подробную информацию
 //Добавить систему локализации в проект
-//Основное меню интерактивное
+//*Основное меню интерактивное
+//*Прятать кнопки которые невозможно использовать
 //Проект Имя
 //   Задач в проекте Кол-во
 //	   Задача №1
@@ -69,102 +84,7 @@ namespace ProductShopAndMenu
 //В заказе должно быть:
 //Цена, имя товара и вес
 //Добавить команду на вывод информации о заказе
-
-
-namespace Korkin
-{
-    using System;
-    using System.Collections.Generic;
-    public class Product
-    {
-        public enum ProductName
-        {
-            Product1,
-            Product2,
-            Product3,
-            Product4,
-            Product5
-        }
-        public ProductName Name { get; set; }
-        public double Price { get; set; }
-    }
-    public class PaymentMethod
-    {
-        public double CurrentAmount { get; set; }
-        public void MakePayment(double amount)
-        {
-            if (CurrentAmount >= amount)
-            {
-                CurrentAmount -= amount;
-                Console.WriteLine("Payment successful!");
-            }
-            else
-            {
-                Console.WriteLine("Insufficient funds!");
-            }
-        }
-    }
-    public class CashPayment : PaymentMethod
-    {
-    }
-    public class CardPayment : PaymentMethod
-    {
-    }
-    public class Shop
-    {
-        public List<Product> Products { get; set; }
-
-        public Shop()
-        {
-            Products = new List<Product>();
-        }
-        public void AddProduct(Product product)
-        {
-            Products.Add(product);
-        }
-        public bool CheckProductAvailability(Product.ProductName name)
-        {
-            foreach (Product product in Products)
-            {
-                if (product.Name == name)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-        public void DisplayAllProducts()
-        {
-            foreach (Product product in Products)
-            {
-                Console.WriteLine($"Товар: {product.Name}, За: {product.Price}");
-            }
-        }
-        public void BuyProduct(Product.ProductName name, PaymentMethod paymentMethod)
-        {
-            foreach (Product product in Products)
-            {
-                if (product.Name == name)
-                {
-                    if (paymentMethod.CurrentAmount >= product.Price)
-                    {
-                        paymentMethod.MakePayment(product.Price);
-                        Products.Remove(product);
-                        Console.WriteLine($"Вы купили это: {product.Name}");
-                        return;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Денег нет");
-                        return;
-                    }
-                }
-            }
-            Console.WriteLine("Нету");
-        }
-    }
-}
-
+//Из команд надо собрать меню
 
 //Реализовать класс продукта, в котором будут поля:
 //Имя продукта – Энам (5 и больше позиций)
@@ -180,4 +100,4 @@ namespace Korkin
 //Метод добавления нового продукта.
 //Метод проверки наличия продукта в магазине.
 //Метод показа информации о всех продуктах в магазине.
-//Метод покупки продукта в магазине. 
+//Метод покупки продукта в магазине.

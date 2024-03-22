@@ -1,5 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using HomeworksStudent.InstallComand;
+using System.Collections;
+using System.Numerics;
 using System.Text;
 
 public static class ExtensionClass
@@ -35,15 +36,40 @@ public static class ExtensionClass
     //        keyValuePairs[key] += value;
     //    }
     //}
+
+    public static long ToMb(this long value)
+    {
+        return value / 1000000;
+    }
+
+    public static long ToGb(this long value)
+    {
+        return value / 1000000000;
+    }
+
+    public static long ToTB(this long value)
+    {
+        return value / 1000000000000;
+    }
+
+    public static void PrintXY(this char[,] array)
+    {
+        for (int width = 0; width < array.GetLength(1); width++)
+        {
+            for (int height = 0; height < array.GetLength(0); height++)
+            {
+                Console.Write(array[height, width]);
+            }
+
+            Console.Write("\n");
+        }
+    }
 }
 
 public interface IContainsName
 {
     public string Name { get; }
 }
-
-
-
 
 //Написать метод расширения для 
 //DateTime, который выводи

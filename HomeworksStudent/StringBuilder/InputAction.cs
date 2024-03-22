@@ -23,7 +23,7 @@ namespace HomeworksStudent.PersonAbstract.StringBuilders
 
         private void ChangeApend(string appendText)
         {
-            IList list = Enum.GetValues(typeof(LineMode));
+            IList<LineMode> list = (IList<LineMode>)Enum.GetValues(typeof(LineMode));
 
             while (true)
             {

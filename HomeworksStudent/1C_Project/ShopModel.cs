@@ -1,6 +1,4 @@
-﻿using HomeworksStudent.MenuProject;
-
-namespace ProductShopAndMenu
+﻿namespace ProductShopAndMenu
 {
     public class ShopModel
     {
@@ -44,7 +42,7 @@ namespace ProductShopAndMenu
 
         public IButton[] GetMenuButtons()
         {
-            return null;
+            throw new NotImplementedException();
         }
 
         public void ShowProductByType(ProductType productType)

@@ -6,7 +6,7 @@ namespace HomeworksStudent.MenuProject {
 
         public void Start() {
             Menu menu = new Menu([new AddComand(), new RemoveComand(), new ShowProductInfoComand()]);
-            menu.Start(true, _localizationManager.GetLocaleText(LocaleKey.SelectAction));
+            menu.Start(_localizationManager.GetLocaleText(LocaleKey.SelectAction));
         }
     }
 }

@@ -120,7 +120,7 @@ namespace HomeworksStudent.RefactoringRuchkov
 
         public void Run()
         {
-            IList modes = GetAndPrintLineModes();
+            IList<LineMode> modes = GetAndPrintLineModes();
 
             if (InputHelper.Input("", (int)modes[0], (int)modes[modes.Count - 1], out int inputValue))
             {
@@ -129,12 +129,12 @@ namespace HomeworksStudent.RefactoringRuchkov
             }
         }
 
-        private IList GetAndPrintLineModes()
+        private IList<LineMode> GetAndPrintLineModes()
         {
-            IList lineModes = Enum.GetValues(typeof(LineMode));
+            LineMode[] lineModes = (LineMode[])Enum.GetValues(typeof(LineMode));
             StringBuilder stringBuilder = new StringBuilder();
 
-            for (var i = 0; i < lineModes.Count; i++)
+            for (var i = 0; i < lineModes.Length; i++)
             {
                 stringBuilder.Append($"{i + 1} - {lineModes[i]}");
             }

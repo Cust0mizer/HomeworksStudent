@@ -1,5 +1,4 @@
 ﻿using HomeworksStudent.MenuProject;
-using System.Collections;
 
 namespace ProductShopAndMenu
 {
@@ -7,23 +6,23 @@ namespace ProductShopAndMenu
     {
         public List<IButton> GetButtons<T>(Action<T> action) where T : struct, Enum
         {
-            IList enumsValue = Enum.GetValues(typeof(T));
+            IList<T> enumsValue = (IList<T>)Enum.GetValues(typeof(T));
             List<IButton> _products = new();
 
             for (int i = 0; i < enumsValue.Count; i++)
             {
-                _products.Add(new EnumMenuItem<T>(action, (T)enumsValue[i]));
+                _products.Add(new EnumMenuItem<T>(action, enumsValue[i]));
             }
 
             return _products;
         }
     }
 
-    public class ProductItemFactory
+    public static class ProductItemFactory
     {
-        public List<IMenuItem> GetButtons<T>(Action<T> action, Product product)
+        public static List<IMenuItem> GetButtons<T>(Action<T> action, Product product)
         {
-            IList enumsValue = Enum.GetValues(typeof(T));
+            IList<T> enumsValue = (IList<T>)Enum.GetValues(typeof(T));
             List<IMenuItem> _products = new();
 
             for (int i = 0; i < enumsValue.Count; i++)

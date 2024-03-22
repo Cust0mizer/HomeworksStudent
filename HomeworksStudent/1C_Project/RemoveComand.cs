@@ -15,9 +15,14 @@ namespace ProductShopAndMenu
             if (_shop.ContainsProduct())
             {
                 _shop.ShowAllProductInfo();
+                if (InputHelper.ChangeInput("Product", 1, _shop.GetProductCount(), out int userUnputValue))
+                {
+                    _shop.RemoveProduct(userUnputValue - 1);
+                }
 
-                Menu menu = new Menu(_shop.GetMenuButtons());
-                menu.Start(true, "");
+
+                //Menu menu = new Menu(_shop.GetMenuButtons());
+                //menu.Start("");
             }
             else
             {

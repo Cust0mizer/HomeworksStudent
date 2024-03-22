@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-
-namespace ProductShopAndMenu
+﻿namespace ProductShopAndMenu
 {
     public class Product : IContainsName
     {

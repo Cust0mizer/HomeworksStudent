@@ -13,7 +13,7 @@ namespace ProductShopAndMenu
         {
             Action<Locales> action = _localizationManager.SetLocale;
             Menu menu = new Menu(_enumFactory.GetButtonsByEnum(action));
-            menu.Start(true, _localizationManager.GetLocaleText(LocaleKey.SelectAction));
+            menu.Start(_localizationManager.GetLocaleText(LocaleKey.SelectAction));
         }
     }
 }

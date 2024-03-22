@@ -14,7 +14,7 @@ namespace ProductShopAndMenu
             if (_shop.ContainsProduct()) {
                 Action<ProductType> action = _shop.ShowProductByType;
                 Menu menu = new Menu(_enumFactory.GetButtonsByEnum(action));
-                menu.Start(true, _localizationManager.GetLocaleText(LocaleKey.SelectAction));
+                menu.Start(_localizationManager.GetLocaleText(LocaleKey.SelectAction));
             }
             else {
                 ShopErrorHelper.NoProductMessage();
