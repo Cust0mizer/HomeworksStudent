@@ -42,10 +42,15 @@ public static class ExtensionClass
         return value / 1000000;
     }
 
+
+
     public static long ToGb(this long value)
     {
         return value / 1000000000;
     }
+
+
+
 
     public static long ToTB(this long value)
     {
@@ -63,6 +68,16 @@ public static class ExtensionClass
 
             Console.Write("\n");
         }
+    }
+
+    public static bool HasElements(this Array array)
+    {
+        return array.Length > 0;
+    }
+
+    public static bool HasElements<T>(this List<T> list)
+    {
+        return list.Count > 0;
     }
 }
 

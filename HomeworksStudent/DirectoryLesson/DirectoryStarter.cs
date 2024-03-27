@@ -1,6 +1,6 @@
-﻿using HomeworksStudent.DriveHelperLesson;
-using HomeworksStudent.MenuProject;
+﻿using HomeworksStudent.MenuProject;
 using ProductShopAndMenu;
+using System.Linq;
 
 namespace HomeworksStudent.DirectoryLesson
 {
@@ -8,12 +8,102 @@ namespace HomeworksStudent.DirectoryLesson
     {
         public void Start()
         {
-            //ServiceLocator.Instance.DirectoryManager.Show();
+            //foreach (var item in DriveInfo.GetDrives())
+            //{
+            //    string path = Path.Combine(item.RootDirectory.Name, "Windows", "System32");
+            //    Path.Join();
+            //    if (Directory.Exists(path))
+            //    {
+            //        Console.WriteLine("Тут есть FKTYF");
+            //    }
+            //}
 
-            DriveInfo drive = DriveHelper.SearchSystemDrive();
-            FillImage fillImage = new FillImage(0, drive.TotalSize.ToGb());
-            fillImage.FillAmount(drive.TotalFreeSpace.ToGb());
+            //DirectoryInfo directoryInfo = new DirectoryInfo(Directory.GetCurrentDirectory());
+            //foreach (var item in Directory.EnumerateFiles(@"\\server\Total\!Воробьев\projects\HomeworksStudent\HomeworksStudent"))
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //foreach (var item in DriveInfo.GetDrives())
+            //{
+            //    if (item.IsReady)
+            //    {
+            //        Console.WriteLine(item.AvailableFreeSpace.ToGb());
+            //    }
+            //}
+            //ServiceLocator.Instance.DirectoryManager.Show();
+            //DriveInfo drive = DriveHelper.SearchSystemDrive();
+            ////Console.WriteLine(drive.Name);
+            //FillImage fillImage = new FillImage(0, drive.TotalSize.ToGb());
+            //fillImage.FillAmount(drive.TotalFreeSpace.ToGb());
+
+
+            //string path = Path.Combine(Directory.GetCurrentDirectory(), "FileBinary");
+            //using (FileStream fileStream = new FileStream(path, FileMode.Append))
+            //{
+            //    using (BinaryWriter binaryWriter = new BinaryWriter(fileStream))
+            //    {
+            //        binaryWriter.Write("Hello world!\n");
+            //    }
+            //}
+            //using (FileStream fileStream = new FileStream(path, FileMode.Open))
+            //{
+            //    using (BinaryReader binaryWriter = new BinaryReader(fileStream))
+            //    {
+            //        foreach (var item in binaryWriter.ReadBytes(binaryWriter.Read()).ToString())
+            //        {
+            //            Console.WriteLine(item);
+            //        }
+            //        //binaryWriter.rea("Hello world!");
+            //    }
+            //}
             //Console.WriteLine($"Free {drive.TotalFreeSpace.ToGb()} for {drive.TotalSize.ToGb()}");
+
+            //var files = Directory.EnumerateFiles(Directory.GetCurrentDirectory());
+            //Console.WriteLine(Directory.GetDirectoryRoot(Directory.GetCurrentDirectory()));
+            //foreach (var file in files)
+            //{
+            //    Console.WriteLine(file);
+            //}
+
+
+            //foreach (var item in elements)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            //using (FileStream elem = File.Open($@"{Directory.GetCurrentDirectory()}\newFile.txt", FileMode.Append))
+            //{
+            //    using (StreamWriter streamWriter = new StreamWriter(elem))
+            //    {
+            //        streamWriter.Write("Hello world");
+            //    }
+            //}
+
+            //DriveInfo[] elements = DriveInfo.GetDrives();
+            //foreach (var element in elements)
+            //{
+            //    ExtensionClasssss.ASDASD(element);
+            //}
         }
     }
 
@@ -159,14 +249,14 @@ namespace HomeworksStudent.DirectoryLesson
             switch (horizontalGravity)
             {
                 case WidthGravity.Center:
-                result = _panelSize.GetLength(0) / 2;
-                break;
+                    result = _panelSize.GetLength(0) / 2;
+                    break;
                 case WidthGravity.Start:
-                result = 0;
-                break;
+                    result = 0;
+                    break;
                 case WidthGravity.End:
-                result = _panelSize.GetLength(0) - 1;
-                break;
+                    result = _panelSize.GetLength(0) - 1;
+                    break;
             }
             return result;
         }
@@ -178,14 +268,14 @@ namespace HomeworksStudent.DirectoryLesson
             switch (verticalGravity)
             {
                 case HeightGravity.Center:
-                result = _panelSize.GetLength(1) / 2;
-                break;
+                    result = _panelSize.GetLength(1) / 2;
+                    break;
                 case HeightGravity.Start:
-                result = 0;
-                break;
+                    result = 0;
+                    break;
                 case HeightGravity.End:
-                result = _panelSize.GetLength(1) - 1;
-                break;
+                    result = _panelSize.GetLength(1) - 1;
+                    break;
             }
             return result;
         }
@@ -234,4 +324,83 @@ public enum WidthGravity
     Center,
     Start,
     End
+}
+
+
+
+//Метод который в процентах показывает свободное место на диске
+
+//Написать экстеншен метод который переводит байты в гигобайты
+//И с его помощью вывести свободное место на всех дисках в 
+//гигабайтах
+
+//Написать экстеншен метод для массива который проверяет наличие
+//элементов в нём
+
+//Записать в файл ваши ФИО
+
+//Найти системный диск вашей системы.
+
+
+
+public static class ExtensionClasssss
+{
+    public static float ToGb(this long value)
+    {
+        return value / 1000000000;
+    }
+
+    public static void ASDASD(DriveInfo driveInfo)
+    {
+        int wer = (int)((float)driveInfo.AvailableFreeSpace / driveInfo.TotalSize * 100);
+        Console.WriteLine(wer);
+    }
+}
+
+//Статический класс DriverHelper, который показывает
+//Сколько есть свободного места на диске в процентах
+
+
+
+public class PlayerManager
+{
+    private List<Playerrrrrr> startList;
+
+    public PlayerManager()
+    {
+        startList = new List<Playerrrrrr>();
+        for (int i = 0; i < 100; i++)
+        {
+            startList.Add(new Playerrrrrr());
+        }
+
+        List<Playerrrrrr> result1 = new List<Playerrrrrr>();
+        foreach (var item in startList)
+        {
+            if (item.PlayerType == PlayerType.Human)
+            {
+                result1.Add(item);
+            }
+        }
+
+        List<Playerrrrrr> result2 = startList.FindAll(item => item.PlayerType == PlayerType.Human);
+        IEnumerable<Playerrrrrr> result3 = startList.Where(x => x.PlayerType == PlayerType.Human);
+        startList.ForEach(x => x.PrintInfo());
+    }
+}
+
+public class Playerrrrrr
+{
+    public PlayerType PlayerType { get; }
+
+    public void PrintInfo()
+    {
+        Console.WriteLine(PlayerType);
+    }
+}
+
+public enum PlayerType
+{
+    Human,
+    Animal
 }

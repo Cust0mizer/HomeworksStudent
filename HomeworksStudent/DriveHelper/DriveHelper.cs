@@ -9,8 +9,8 @@
 
             foreach (var drive in drivers)
             {
-                Directory.SetCurrentDirectory(drive.RootDirectory.FullName);
-                if (Directory.Exists(@"\ProgramData"))
+                string path = Path.Join(drive.RootDirectory.FullName, "ProgramData");
+                if (Directory.Exists(@$"{path}"))
                 {
                     result = drive;
                     break;
